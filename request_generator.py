@@ -14,6 +14,9 @@ class Requst:
         self.arrival_time = arrival_time
         self.service_type = service_type
 
+    def __str__(self):
+        return "t = "+str(self.arrival_time)+", type = "+ str(self.service_type)
+
 def generate_requests_per_interval(start_time, end_time, rate, service_type):
     if verbose:
         print("start_time = ", start_time, ", end_time = ", end_time, ", rate = ", rate)
@@ -65,3 +68,4 @@ if __name__ == "__main__":
     simulation_time = 10
 
     generate_requests_per_type(arrival_rates, service_type, simulation_time)
+
