@@ -113,13 +113,13 @@ def run(events):
 if __name__ == "__main__":
 
     
-    arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 4), request_generator.ArrivalRateDynamics(0.1, 10)]
+    arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 5), request_generator.ArrivalRateDynamics(0.1, 10)]
     service_type = request_generator.ServiceType1(5, 1)
     simulation_time = 10
 
     requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
 
-    number_of_empty_instances = 100
+    number_of_empty_instances = 1
     events = start()
     fill_arrival_events(requests, events)
     run(events)
