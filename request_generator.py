@@ -6,8 +6,16 @@ import debug
 from debug import verbose
 
 class ServiceType:
-    def __init__(self, mu):
+    def __init__(self, mu, delay_threshold):
         self.service_rate = mu
+        self.delay_threshold = delay_threshold
+    
+class ServiceType1(ServiceType):
+    def __init__(self, mu, delay_threshold):
+        super().__init__(mu, delay_threshold)
+
+    def sla_penalty(self, time):
+        return max(0, (time - self.delay_threshold) * 1000)
 
 class Requst:
     def __init__(self, arrival_time, service_type):

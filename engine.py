@@ -15,8 +15,6 @@ class EventTypes(IntEnum):
     arrival     = 0 # new demand arrival, it will be enqueued
     dequeue     = 1 # a server dequeues a request
     finish      = 2 # processing the service is finished
-    no_empty    = 3 # there is at least one request in the queue, wake up if any idle server
-
 
 class Event:
     def __init__(self, time, event_type, processor, data):
@@ -62,6 +60,7 @@ def dequeue_event_processor(current_time, dummy, events):
     else:
         request = requests_queue.get()
         logging.debug("dequeue_event_processor: time = %f, req = %s", current_time, request)
+        logging.debug("dequeue_event_processor: queue len = %d", requests_queue.qsize())
     
         event_creators[EventTypes.finish](current_time, request, events)
 
@@ -70,8 +69,14 @@ def dequeue_event_creator(time, events):
     event = Event(time, EventTypes.dequeue, dequeue_event_processor, None)
     add_event(events, event)
 
+def sla_penalty(current_time, request):
+    time = current_time - request.arrival_time
+    return request.service_type.sla_penalty(time)
+
 def finish_event_processor(current_time, request, events):
     logging.debug("finish_event_processor: time = %f, request = %s", current_time, request)
+    penalty = sla_penalty(current_time, request)
+    logging.debug("finish_event_processor: SAL penalty = %f", penalty)
     event_creators[EventTypes.dequeue](current_time, events)
     
 def finish_event_creator(current_time, request, events):
@@ -108,13 +113,13 @@ def run(events):
 if __name__ == "__main__":
 
     
-    arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 1), request_generator.ArrivalRateDynamics(0.1, 10)]
-    service_type = request_generator.ServiceType(0.00005)
+    arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 4), request_generator.ArrivalRateDynamics(0.1, 10)]
+    service_type = request_generator.ServiceType1(5, 1)
     simulation_time = 10
 
     requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
 
-    number_of_empty_instances = 200
+    number_of_empty_instances = 100
     events = start()
     fill_arrival_events(requests, events)
     run(events)
