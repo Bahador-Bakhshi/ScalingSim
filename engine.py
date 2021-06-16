@@ -81,7 +81,7 @@ def finish_event_processor(current_time, request, events):
     
 def finish_event_creator(current_time, request, events):
     logging.debug("finish_event_creator")
-    time = current_time + np.random.exponential(1.0 / request.service_type.service_rate)
+    time = current_time + request.holding_time
     event = Event(time, EventTypes.finish, finish_event_processor, request)
     add_event(events, event)
 
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
     requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
 
-    number_of_empty_instances = 1
+    number_of_empty_instances = 10
     events = start()
     fill_arrival_events(requests, events)
     run(events)

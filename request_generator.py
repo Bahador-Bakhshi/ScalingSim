@@ -18,8 +18,9 @@ class ServiceType1(ServiceType):
         return max(0, (time - self.delay_threshold) * 1000)
 
 class Requst:
-    def __init__(self, arrival_time, service_type):
+    def __init__(self, arrival_time, holding_time, service_type):
         self.arrival_time = arrival_time
+        self.holding_time = holding_time
         self.service_type = service_type
 
     def __str__(self):
@@ -33,7 +34,8 @@ def generate_requests_per_interval(start_time, end_time, rate, service_type):
     t = start_time
     while t <= end_time:
         t += np.random.exponential(1.0 / rate)
-        request = Requst(t, service_type)
+        holding_time = np.random.exponential(1.0 / service_type.service_rate)
+        request = Requst(t, holding_time, service_type)
         if t <= end_time:
             res.append(request)
 
@@ -72,7 +74,7 @@ def generate_requests_per_type(arrival_rates, service_type, simulation_time):
 if __name__ == "__main__":
 
     arrival_rates = [ArrivalRateDynamics(0.9, 1), ArrivalRateDynamics(0.1, 10)]
-    service_type = ServiceType(5)
+    service_type = ServiceType(1)
     simulation_time = 10
 
     generate_requests_per_type(arrival_rates, service_type, simulation_time)
