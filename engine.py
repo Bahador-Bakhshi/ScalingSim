@@ -10,6 +10,7 @@ import request_generator
 
 requests_queue = queue.Queue()
 number_of_empty_instances = 0
+number_of_instances = 0
 
 class EventTypes(IntEnum):
     arrival     = 0 # new demand arrival, it will be enqueued
@@ -89,8 +90,8 @@ def finish_event_creator(current_time, request, events):
 
 class InstanceLifeTime:
     def __init__(self):
-        self.instantiation_time = 0
-        self.terminatation_time = 0
+        self.instantiation_time = None
+        self.terminatation_time = None
 
 instances = []
 
@@ -102,8 +103,12 @@ def instantiate_event_processor(current_time, dummy, events):
     logging.debug("instantiate_event_processor: time = %s", current_time)
     slt = InstanceLifeTime()
     slt.instantiation_time = max(current_time, 0)
+    instances.append(slt)
+
     global number_of_empty_instances
     number_of_empty_instances += 1
+    global number_of_instances
+    number_of_instances += 1
 
 def instantiate_event_creator(current_time, events):
     logging.debug("instantiate_event_creator: time = %s", current_time)
@@ -112,11 +117,36 @@ def instantiate_event_creator(current_time, events):
     add_event(events, event)
 
 
+def termination_event_processor(current_time, dummy, events):
+    logging.debug("termination_event_processor: time = %s", current_time)
+
+    for slt in instances:
+        if slt.terminatation_time == None:
+            slt.terminatation_time = current_time
+            
+            global number_of_empty_instances
+            number_of_empty_instances -= 1
+            global number_of_instances
+            number_of_instances -= 1
+
+            return
+
+    logging.error("termination_event_processor: cannot find an instance to terminate")
+    sys.exit(-1)
+
+def termination_event_creator(current_time, events):
+    logging.debug("termination_event_creator: time = %s", current_time)
+    event = Event(current_time, EventTypes.terminate, termination_event_processor, None)
+    add_event(events, event)
+
+
 event_creators={}
 event_creators[EventTypes.arrival] = arrival_event_creator
 event_creators[EventTypes.dequeue] = dequeue_event_creator
 event_creators[EventTypes.finish]  = finish_event_creator
 event_creators[EventTypes.instantiate] = instantiate_event_creator
+event_creators[EventTypes.terminate] = termination_event_creator
+
 
 def fill_arrival_events(requests, events):
     for req in requests:
@@ -126,16 +156,36 @@ def print_events(events):
     for event in events:
         print("time = ", event.time, ", type = ", event.event_type, ", proc = ", event.processor, ", data = ", event.data)
 
-
 def start():
     events = []
     return events
 
 def run(events):
+    last_time = 0
     while len(events) > 0:
         event = heapq.heappop(events)
+        last_time = event.time
         event.processor(event.time, event.data, events)
         print("number_of_empty_instances = ", number_of_empty_instances)
+    
+    return last_time
+
+INSTANTIATION_COST = 20
+def instantiation_cost():
+    return INSTANTIATION_COST
+
+INSTANTCE_USAGE_PER_TIMER = 1
+def instance_usage_cost(ht):
+    return ht * INSTANTIATION_TIME
+
+def instances_costs():
+    total_cost = 0
+    for slt in instances:
+        ht = slt.terminatation_time - slt.instantiation_time
+        logging.debug("instances_costs: st = %s, et = %s", slt.instantiation_time, slt.terminatation_time)
+        total_cost += instantiation_cost() + instance_usage_cost(ht)
+
+    return total_cost
 
 
 if __name__ == "__main__":
@@ -144,13 +194,23 @@ if __name__ == "__main__":
     arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 3), request_generator.ArrivalRateDynamics(0.1, 5)]
     service_type = request_generator.ServiceType1(0.5, 5)
     simulation_time = 10
+    max_instance_num = 10
 
     requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
 
     events = start()
     fill_arrival_events(requests, events)
-    event_creators[EventTypes.instantiate](-100, events)
+    for _ in range(max_instance_num):
+        event_creators[EventTypes.instantiate](-100, events)\
+
+    last_time = run(events)
+
+    for _ in range(max_instance_num):
+        event_creators[EventTypes.terminate](last_time, events)
     run(events)
+
+    cost = instances_costs()
+    print("instances_costs = ", cost)
     
 
 
