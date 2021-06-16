@@ -11,6 +11,8 @@ import request_generator
 requests_queue = queue.Queue()
 number_of_empty_instances = 0
 number_of_instances = 0
+sla_penalty_cost = []
+instances = []
 
 class EventTypes(IntEnum):
     arrival     = 0 # new demand arrival, it will be enqueued
@@ -80,6 +82,7 @@ def finish_event_processor(current_time, request, events):
     logging.debug("finish_event_processor: time = %f, request = %s", current_time, request)
     penalty = sla_penalty(current_time, request)
     logging.debug("finish_event_processor: SLA penalty = %f", penalty)
+    sla_penalty_cost.append(penalty)
     event_creators[EventTypes.dequeue](current_time, events)
     
 def finish_event_creator(current_time, request, events):
@@ -93,7 +96,6 @@ class InstanceLifeTime:
         self.instantiation_time = None
         self.terminatation_time = None
 
-instances = []
 
 INSTANTIATION_TIME = 10
 def get_instantiation_time():
@@ -166,15 +168,15 @@ def run(events):
         event = heapq.heappop(events)
         last_time = event.time
         event.processor(event.time, event.data, events)
-        print("number_of_empty_instances = ", number_of_empty_instances)
+        logging.debug("number_of_empty_instances = %s", number_of_empty_instances)
     
     return last_time
 
-INSTANTIATION_COST = 20
+INSTANTIATION_COST = 30000
 def instantiation_cost():
     return INSTANTIATION_COST
 
-INSTANTCE_USAGE_PER_TIMER = 1
+INSTANTCE_USAGE_PER_TIMER = 10
 def instance_usage_cost(ht):
     return ht * INSTANTIATION_TIME
 
@@ -187,30 +189,46 @@ def instances_costs():
 
     return total_cost
 
+def sla_cost():
+    return sum(sla_penalty_cost)
 
 if __name__ == "__main__":
-
     
-    arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 3), request_generator.ArrivalRateDynamics(0.1, 5)]
-    service_type = request_generator.ServiceType1(0.5, 5)
+    arrival_rates = [request_generator.ArrivalRateDynamics(0.25, 5), request_generator.ArrivalRateDynamics(0.5, 20), request_generator.ArrivalRateDynamics(0.25, 10)]
+    service_type = request_generator.ServiceType1(4.0, 5 * 1.0 / 4.0)
     simulation_time = 10
-    max_instance_num = 10
+    iterations = 1
+    max_instance_num = 2
 
-    requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
+    for instance_num in range(1,max_instance_num):
+        inst_costs_arr = []
+        sla_costs_arr  = []
 
-    events = start()
-    fill_arrival_events(requests, events)
-    for _ in range(max_instance_num):
-        event_creators[EventTypes.instantiate](-100, events)\
+        for _ in range(iterations):
+            requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
 
-    last_time = run(events)
+            requests_queue = queue.Queue()
+            number_of_empty_instances = 0
+            number_of_instances = 0
+            sla_penalty_cost = []
+            instances = []
 
-    for _ in range(max_instance_num):
-        event_creators[EventTypes.terminate](last_time, events)
-    run(events)
+            events = start()
+            fill_arrival_events(requests, events)
+            for _ in range(instance_num):
+                event_creators[EventTypes.instantiate](-100, events)
 
-    cost = instances_costs()
-    print("instances_costs = ", cost)
+            last_time = run(events)
+
+            for _ in range(instance_num):
+                event_creators[EventTypes.terminate](last_time, events)
+            run(events)
+
+            inst_costs = instances_costs()
+            inst_costs_arr.append(inst_costs)
+            sla_costs  = sla_cost()
+            sla_costs_arr.append(sla_costs)
+            logging.debug("instances_costs = %s, sla_cost = %s", inst_costs, sla_costs)
     
-
+        print("Result for max_instance_num = ", instance_num," instances_costs = ", sum(inst_costs_arr) / iterations, " sla_costs = ", sum(sla_costs_arr) / iterations, flush=True)
 

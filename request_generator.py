@@ -9,13 +9,14 @@ class ServiceType:
     def __init__(self, mu, delay_threshold):
         self.service_rate = mu
         self.delay_threshold = delay_threshold
-    
+   
+TYPE1_SLA_PENALTY_PER_TIME = 0.1
 class ServiceType1(ServiceType):
     def __init__(self, mu, delay_threshold):
         super().__init__(mu, delay_threshold)
 
     def sla_penalty(self, time):
-        return max(0, (time - self.delay_threshold) * 1000)
+        return max(0, (time - self.delay_threshold) * TYPE1_SLA_PENALTY_PER_TIME)
 
 class Requst:
     def __init__(self, arrival_time, holding_time, service_type):
@@ -24,17 +25,16 @@ class Requst:
         self.service_type = service_type
 
     def __str__(self):
-        return "t = "+str(self.arrival_time)+", type = "+ str(self.service_type)
+        return "t = "+str(self.arrival_time)+", ht ="+str(self.holding_time)+", type = "+ str(self.service_type)
 
 def generate_requests_per_interval(start_time, end_time, rate, service_type):
-    if verbose:
-        print("start_time = ", start_time, ", end_time = ", end_time, ", rate = ", rate)
+    logging.debug("start_time = %s, end_time = %s, rate = %s", start_time, end_time, rate)
     
     res = []
     t = start_time
     while t <= end_time:
         t += np.random.exponential(1.0 / rate)
-        holding_time = np.random.exponential(1.0 / service_type.service_rate)
+        holding_time = min(np.random.exponential(1.0 / service_type.service_rate), service_type.delay_threshold)
         request = Requst(t, holding_time, service_type)
         if t <= end_time:
             res.append(request)
