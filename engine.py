@@ -15,6 +15,8 @@ class EventTypes(IntEnum):
     arrival     = 0 # new demand arrival, it will be enqueued
     dequeue     = 1 # a server dequeues a request
     finish      = 2 # processing the service is finished
+    instantiate = 3 # processing the service is finished
+    terminate   = 4 # processing the service is finished
 
 class Event:
     def __init__(self, time, event_type, processor, data):
@@ -76,7 +78,7 @@ def sla_penalty(current_time, request):
 def finish_event_processor(current_time, request, events):
     logging.debug("finish_event_processor: time = %f, request = %s", current_time, request)
     penalty = sla_penalty(current_time, request)
-    logging.debug("finish_event_processor: SAL penalty = %f", penalty)
+    logging.debug("finish_event_processor: SLA penalty = %f", penalty)
     event_creators[EventTypes.dequeue](current_time, events)
     
 def finish_event_creator(current_time, request, events):
@@ -85,11 +87,36 @@ def finish_event_creator(current_time, request, events):
     event = Event(time, EventTypes.finish, finish_event_processor, request)
     add_event(events, event)
 
+class InstanceLifeTime:
+    def __init__(self):
+        self.instantiation_time = 0
+        self.terminatation_time = 0
+
+instances = []
+
+INSTANTIATION_TIME = 10
+def get_instantiation_time():
+    return INSTANTIATION_TIME
+
+def instantiate_event_processor(current_time, dummy, events):
+    logging.debug("instantiate_event_processor: time = %s", current_time)
+    slt = InstanceLifeTime()
+    slt.instantiation_time = max(current_time, 0)
+    global number_of_empty_instances
+    number_of_empty_instances += 1
+
+def instantiate_event_creator(current_time, events):
+    logging.debug("instantiate_event_creator: time = %s", current_time)
+    time = current_time + get_instantiation_time()
+    event = Event(time, EventTypes.instantiate, instantiate_event_processor, None)
+    add_event(events, event)
+
 
 event_creators={}
 event_creators[EventTypes.arrival] = arrival_event_creator
 event_creators[EventTypes.dequeue] = dequeue_event_creator
 event_creators[EventTypes.finish]  = finish_event_creator
+event_creators[EventTypes.instantiate] = instantiate_event_creator
 
 def fill_arrival_events(requests, events):
     for req in requests:
@@ -108,20 +135,21 @@ def run(events):
     while len(events) > 0:
         event = heapq.heappop(events)
         event.processor(event.time, event.data, events)
+        print("number_of_empty_instances = ", number_of_empty_instances)
 
 
 if __name__ == "__main__":
 
     
-    arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 5), request_generator.ArrivalRateDynamics(0.1, 10)]
-    service_type = request_generator.ServiceType1(5, 1)
+    arrival_rates = [request_generator.ArrivalRateDynamics(0.9, 3), request_generator.ArrivalRateDynamics(0.1, 5)]
+    service_type = request_generator.ServiceType1(0.5, 5)
     simulation_time = 10
 
     requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
 
-    number_of_empty_instances = 10
     events = start()
     fill_arrival_events(requests, events)
+    event_creators[EventTypes.instantiate](-100, events)
     run(events)
     
 
