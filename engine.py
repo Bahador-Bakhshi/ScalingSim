@@ -51,7 +51,7 @@ def arrival_event_processor(current_time, request, events):
     global number_of_empty_instances
     if number_of_empty_instances > 0:
         number_of_empty_instances -= 1
-        event_creators[EventTypes.dequeue](current_time, events)
+        dequeue_event_creator(current_time, events)
 
 def arrival_event_creator(request, events):
     event = Event(request.arrival_time, EventTypes.arrival, arrival_event_processor, request)
@@ -67,7 +67,7 @@ def dequeue_event_processor(current_time, dummy, events):
         logging.debug("dequeue_event_processor: time = %f, req = %s", current_time, request)
         logging.debug("dequeue_event_processor: queue len = %d", requests_queue.qsize())
     
-        event_creators[EventTypes.finish](current_time, request, events)
+        finish_event_creator(current_time, request, events)
 
 def dequeue_event_creator(time, events):
     logging.debug("dequeue_event_creator")
@@ -83,7 +83,7 @@ def finish_event_processor(current_time, request, events):
     penalty = sla_penalty(current_time, request)
     logging.debug("finish_event_processor: SLA penalty = %f", penalty)
     sla_penalty_cost.append(penalty)
-    event_creators[EventTypes.dequeue](current_time, events)
+    dequeue_event_creator(current_time, events)
     
 def finish_event_creator(current_time, request, events):
     logging.debug("finish_event_creator")
@@ -142,17 +142,9 @@ def termination_event_creator(current_time, events):
     add_event(events, event)
 
 
-event_creators={}
-event_creators[EventTypes.arrival] = arrival_event_creator
-event_creators[EventTypes.dequeue] = dequeue_event_creator
-event_creators[EventTypes.finish]  = finish_event_creator
-event_creators[EventTypes.instantiate] = instantiate_event_creator
-event_creators[EventTypes.terminate] = termination_event_creator
-
-
 def fill_arrival_events(requests, events):
     for req in requests:
-        event_creators[EventTypes.arrival](req, events)
+        arrival_event_creator(req, events)
     
 def print_events(events):
     for event in events:
@@ -196,7 +188,7 @@ if __name__ == "__main__":
     
     arrival_rates = [request_generator.ArrivalRateDynamics(0.25, 5), request_generator.ArrivalRateDynamics(0.5, 20), request_generator.ArrivalRateDynamics(0.25, 10)]
     service_type = request_generator.ServiceType1(4.0, 5 * 1.0 / 4.0)
-    simulation_time = 10
+    simulation_time = 1
     iterations = 1
     max_instance_num = 2
 
@@ -216,12 +208,12 @@ if __name__ == "__main__":
             events = start()
             fill_arrival_events(requests, events)
             for _ in range(instance_num):
-                event_creators[EventTypes.instantiate](-100, events)
+                instantiate_event_creator(-100, events)
 
             last_time = run(events)
 
             for _ in range(instance_num):
-                event_creators[EventTypes.terminate](last_time, events)
+                termination_event_creator(last_time, events)
             run(events)
 
             inst_costs = instances_costs()

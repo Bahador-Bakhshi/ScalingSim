@@ -18,6 +18,9 @@ class ServiceType1(ServiceType):
     def sla_penalty(self, time):
         return max(0, (time - self.delay_threshold) * TYPE1_SLA_PENALTY_PER_TIME)
 
+    def __str__(self):
+        return "mu = "+str(self.service_rate)+", threshold = "+str(self.delay_threshold)
+
 class Requst:
     def __init__(self, arrival_time, holding_time, service_type):
         self.arrival_time = arrival_time
@@ -66,7 +69,7 @@ def generate_requests_per_type(arrival_rates, service_type, simulation_time):
 
     logging.debug("per_type requests:")
     for req in result:
-        logging.debug("t = %f, type.mu = %f", req.arrival_time, req.service_type.service_rate)
+        logging.debug("req = %s", req)
 
     return result
 
