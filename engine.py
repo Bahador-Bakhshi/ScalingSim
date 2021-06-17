@@ -11,6 +11,7 @@ import request_generator
 requests_queue = queue.Queue()
 number_of_empty_instances = 0
 number_of_instances = 0
+must_be_terminated = 0
 sla_penalty_cost = []
 instances = []
 
@@ -20,6 +21,7 @@ class EventTypes(IntEnum):
     finish      = 2 # processing the service is finished
     instantiate = 3 # processing the service is finished
     terminate   = 4 # processing the service is finished
+    monitor     = 5
 
 class Event:
     def __init__(self, time, event_type, processor, data):
@@ -47,10 +49,10 @@ def print_queue(requests_queue):
 def arrival_event_processor(current_time, request, events):
     logging.debug("arrival_event_processor: time = %f, req = %s", current_time, request)
     requests_queue.put(request)
-
-    global number_of_empty_instances
-    if number_of_empty_instances > 0:
-        number_of_empty_instances -= 1
+    
+    if number_of_instances == 0:
+        instantiate_event_processor(current_time, None, events)
+    elif number_of_empty_instances > 0:
         dequeue_event_creator(current_time, events)
 
 def arrival_event_creator(request, events):
@@ -58,19 +60,20 @@ def arrival_event_creator(request, events):
     add_event(events, event)
 
 def dequeue_event_processor(current_time, dummy, events):
+
     if requests_queue.empty():
         logging.debug("Queue is empty")
-        global number_of_empty_instances
-        number_of_empty_instances += 1
     else:
+        global number_of_empty_instances
+        number_of_empty_instances -= 1
+ 
         request = requests_queue.get()
         logging.debug("dequeue_event_processor: time = %f, req = %s", current_time, request)
-        logging.debug("dequeue_event_processor: queue len = %d", requests_queue.qsize())
     
         finish_event_creator(current_time, request, events)
 
 def dequeue_event_creator(time, events):
-    logging.debug("dequeue_event_creator")
+    logging.debug("dequeue_event_creator, time = %s", time)
     event = Event(time, EventTypes.dequeue, dequeue_event_processor, None)
     add_event(events, event)
 
@@ -83,10 +86,19 @@ def finish_event_processor(current_time, request, events):
     penalty = sla_penalty(current_time, request)
     logging.debug("finish_event_processor: SLA penalty = %f", penalty)
     sla_penalty_cost.append(penalty)
+
+    global number_of_empty_instances
+    number_of_empty_instances += 1
+ 
     dequeue_event_creator(current_time, events)
+
+    global must_be_terminated
+    if must_be_terminated > 0:
+        termination_event_processor(current_time, None, events)
+
     
 def finish_event_creator(current_time, request, events):
-    logging.debug("finish_event_creator")
+    logging.debug("finish_event_creator: time = %s", current_time)
     time = current_time + request.holding_time
     event = Event(time, EventTypes.finish, finish_event_processor, request)
     add_event(events, event)
@@ -95,7 +107,6 @@ class InstanceLifeTime:
     def __init__(self):
         self.instantiation_time = None
         self.terminatation_time = None
-
 
 INSTANTIATION_TIME = 10
 def get_instantiation_time():
@@ -111,6 +122,8 @@ def instantiate_event_processor(current_time, dummy, events):
     number_of_empty_instances += 1
     global number_of_instances
     number_of_instances += 1
+
+    dequeue_event_creator(current_time, events)
 
 def instantiate_event_creator(current_time, events):
     logging.debug("instantiate_event_creator: time = %s", current_time)
@@ -130,7 +143,9 @@ def termination_event_processor(current_time, dummy, events):
             number_of_empty_instances -= 1
             global number_of_instances
             number_of_instances -= 1
-
+            global must_be_terminated
+            must_be_terminated -= 1
+            
             return
 
     logging.error("termination_event_processor: cannot find an instance to terminate")
@@ -142,10 +157,44 @@ def termination_event_creator(current_time, events):
     add_event(events, event)
 
 
+class MonitoringDataQLen:
+    def __init__(self,  queue_len):
+        self.queue_len = queue_len
+
+QLEN_HIGH_THRESHOLD = 5
+QLEN_LOW_THRESHOLD = 3
+def monitor_event_processor(current_time, interval, events):
+    monitoring_data = MonitoringDataQLen(requests_queue.qsize())
+    logging.debug("monitor_event_processor: time = %s, len = %d", current_time, monitoring_data.queue_len)
+    if monitoring_data.queue_len > QLEN_HIGH_THRESHOLD:
+        instantiate_event_creator(current_time, events)
+    elif monitoring_data.queue_len < QLEN_LOW_THRESHOLD:
+        if number_of_instances > 1: # FIXME or monitoring_data.queue_len == 0:
+            global must_be_terminated
+            must_be_terminated += 1
+
+    if len(events) > 0:
+        monitor_event_creator(current_time, interval, events)
+
+def monitor_event_creator(current_time, interval, events):
+    logging.debug("monitor_event_creator: time = %s", current_time)
+    monitoring_time = current_time + interval
+    event = Event(monitoring_time, EventTypes.monitor, monitor_event_processor, interval)
+    add_event(events, event)
+
 def fill_arrival_events(requests, events):
     for req in requests:
         arrival_event_creator(req, events)
-    
+
+def fill_monitoring_events(interval, simulation_time, events):
+    '''
+    time = interval
+    while time < simulation_time:
+        monitor_event_creator(time, events)
+        time += interval
+    '''
+    monitor_event_creator(0, interval, events)
+
 def print_events(events):
     for event in events:
         print("time = ", event.time, ", type = ", event.event_type, ", proc = ", event.processor, ", data = ", event.data)
@@ -160,7 +209,8 @@ def run(events):
         event = heapq.heappop(events)
         last_time = event.time
         event.processor(event.time, event.data, events)
-        logging.debug("number_of_empty_instances = %s", number_of_empty_instances)
+
+        logging.debug("number_of_instances = %s, number_of_empty_instances = %s, Q len = %s", number_of_instances, number_of_empty_instances, requests_queue.qsize())
     
     return last_time
 
@@ -186,9 +236,9 @@ def sla_cost():
 
 if __name__ == "__main__":
     
-    arrival_rates = [request_generator.ArrivalRateDynamics(0.25, 5), request_generator.ArrivalRateDynamics(0.5, 20), request_generator.ArrivalRateDynamics(0.25, 10)]
-    service_type = request_generator.ServiceType1(4.0, 5 * 1.0 / 4.0)
-    simulation_time = 1
+    arrival_rates = [request_generator.ArrivalRateDynamics(0.25, 1.0), request_generator.ArrivalRateDynamics(0.5, 2.0), request_generator.ArrivalRateDynamics(0.25, 0.5)]
+    service_type = request_generator.ServiceType1(0.030, 5 * 1.0 / 4.0)
+    simulation_time = 20
     iterations = 1
     max_instance_num = 2
 
@@ -207,12 +257,13 @@ if __name__ == "__main__":
 
             events = start()
             fill_arrival_events(requests, events)
-            for _ in range(instance_num):
-                instantiate_event_creator(-100, events)
+            fill_monitoring_events(INSTANTIATION_TIME * 1.5, simulation_time, events)
+            #for _ in range(instance_num):
+            #    instantiate_event_creator(-100, events)
 
             last_time = run(events)
 
-            for _ in range(instance_num):
+            for _ in range(number_of_instances):
                 termination_event_creator(last_time, events)
             run(events)
 
