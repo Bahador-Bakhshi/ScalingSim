@@ -238,40 +238,70 @@ if __name__ == "__main__":
     
     arrival_rates = [request_generator.ArrivalRateDynamics(0.25, 1.0), request_generator.ArrivalRateDynamics(0.5, 2.0), request_generator.ArrivalRateDynamics(0.25, 0.5)]
     service_type = request_generator.ServiceType1(0.030, 5 * 1.0 / 4.0)
-    simulation_time = 20
-    iterations = 1
-    max_instance_num = 2
+    simulation_time = 200
+    iterations = 2
 
-    for instance_num in range(1,max_instance_num):
-        inst_costs_arr = []
-        sla_costs_arr  = []
+    fix_inst_costs_arr = []
+    fix_sla_costs_arr  = []
+    thre_inst_costs_arr = []
+    thre_sla_costs_arr  = []
 
-        for _ in range(iterations):
-            requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
+    for _ in range(iterations):
+        logging.debug("******************************************")
+        requests = request_generator.generate_requests_per_type(arrival_rates, service_type, simulation_time)
 
+        def init():
+            global requests_queue
             requests_queue = queue.Queue()
+            global number_of_empty_instances
             number_of_empty_instances = 0
+            global number_of_instances
             number_of_instances = 0
+            global sla_penalty_cost
             sla_penalty_cost = []
+            global instances
             instances = []
 
             events = start()
             fill_arrival_events(requests, events)
-            fill_monitoring_events(INSTANTIATION_TIME * 1.5, simulation_time, events)
-            #for _ in range(instance_num):
-            #    instantiate_event_creator(-100, events)
 
-            last_time = run(events)
-
-            for _ in range(number_of_instances):
+            return events
+        
+        def shutdown(inst_num, last_time):
+            for _ in range(inst_num):
                 termination_event_creator(last_time, events)
             run(events)
 
+        def res(ins, sla):
             inst_costs = instances_costs()
-            inst_costs_arr.append(inst_costs)
-            sla_costs  = sla_cost()
-            sla_costs_arr.append(sla_costs)
+            ins.append(inst_costs)
+            sla_costs = sla_cost()
+            sla.append(sla_costs)
             logging.debug("instances_costs = %s, sla_cost = %s", inst_costs, sla_costs)
-    
-        print("Result for max_instance_num = ", instance_num," instances_costs = ", sum(inst_costs_arr) / iterations, " sla_costs = ", sum(sla_costs_arr) / iterations, flush=True)
 
+        ############ FIX Policy ##################
+        instance_num = 2
+        events = init()
+
+        for _ in range(instance_num):
+            instantiate_event_creator(-100, events)
+        
+        last_time = run(events)
+
+        shutdown(instance_num, last_time)
+        res(fix_inst_costs_arr, fix_sla_costs_arr)
+
+        ############## Threshold scaling ###########
+        logging.debug("------------------------------")
+
+        events = init()
+
+        fill_monitoring_events(INSTANTIATION_TIME * 1.5, simulation_time, events)
+        last_time = run(events)
+
+        shutdown(number_of_instances, last_time)
+        res(thre_inst_costs_arr, thre_sla_costs_arr)
+
+   
+    print("Fix: instance_cost = ", sum(fix_inst_costs_arr) / iterations," sla cost = ", sum(fix_sla_costs_arr) / iterations)
+    print("Thr: instance_cost = ", sum(thre_inst_costs_arr) / iterations," sla cost = ", sum(thre_sla_costs_arr) / iterations)

@@ -2,4 +2,4 @@ import logging
 
 verbose = True
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.ERROR)
