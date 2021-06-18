@@ -6,20 +6,29 @@ import debug
 from debug import verbose
 
 class ServiceType:
-    def __init__(self, mu, delay_threshold):
+    def __init__(self, mu, delay_threshold1, delay_threshold2):
         self.service_rate = mu
-        self.delay_threshold = delay_threshold
+        self.delay_threshold1 = delay_threshold1
+        self.delay_threshold2 = delay_threshold2
    
-TYPE1_SLA_PENALTY_PER_TIME = 0.1
 class ServiceType1(ServiceType):
-    def __init__(self, mu, delay_threshold):
-        super().__init__(mu, delay_threshold)
+    SLA_PENALTY_PER_TIME_1 = 0.1
+    SLA_PENALTY_PER_TIME_2 = 0.2
+    
+    def __init__(self, mu, delay_threshold1, delay_threshold2):
+        super().__init__(mu, delay_threshold1, delay_threshold2)
 
     def sla_penalty(self, time):
-        return max(0, (time - self.delay_threshold) * TYPE1_SLA_PENALTY_PER_TIME)
+        logging.debug("sla_penalty: processing_time = %f", time)
+        if time < self.delay_threshold1:
+            return 0
+        elif time < self.delay_threshold2:
+            return (time - self.delay_threshold1) * self.SLA_PENALTY_PER_TIME_1
+        else:
+            return (time - self.delay_threshold2) * self.SLA_PENALTY_PER_TIME_2
 
     def __str__(self):
-        return "mu = "+str(self.service_rate)+", threshold = "+str(self.delay_threshold)
+        return "mu = "+str(self.service_rate)+", threshold1 = "+str(self.delay_threshold1)+", threshold2 = "+str(self.delay_threshold2)
 
 class Requst:
     def __init__(self, arrival_time, holding_time, service_type):
@@ -37,7 +46,7 @@ def generate_requests_per_interval(start_time, end_time, rate, service_type):
     t = start_time
     while t <= end_time:
         t += np.random.exponential(1.0 / rate)
-        holding_time = min(np.random.exponential(1.0 / service_type.service_rate), service_type.delay_threshold)
+        holding_time = min(np.random.exponential(1.0 / service_type.service_rate), service_type.delay_threshold1)
         request = Requst(t, holding_time, service_type)
         if t <= end_time:
             res.append(request)
@@ -75,10 +84,14 @@ def generate_requests_per_type(arrival_rates, service_type, simulation_time):
 
 
 if __name__ == "__main__":
-
+    '''
     arrival_rates = [ArrivalRateDynamics(0.9, 1), ArrivalRateDynamics(0.1, 10)]
     service_type = ServiceType(1)
     simulation_time = 10
 
     generate_requests_per_type(arrival_rates, service_type, simulation_time)
+    '''
 
+    service_type = ServiceType1(1, 2, 10)
+    for i in range(20):
+        print(service_type.sla_penalty(i))

@@ -51,7 +51,8 @@ def arrival_event_processor(current_time, request, events):
     requests_queue.put(request)
     
     if number_of_instances == 0:
-        instantiate_event_processor(current_time, None, events)
+        for _ in range(SMALL_IL):
+            instantiate_event_processor(current_time, None, events)
     elif number_of_empty_instances > 0:
         dequeue_event_creator(current_time, events)
 
@@ -77,8 +78,14 @@ def dequeue_event_creator(time, events):
     event = Event(time, EventTypes.dequeue, dequeue_event_processor, None)
     add_event(events, event)
 
+alpha = 0.3
+def update_processing_time(time):
+    global processing_time
+    processing_time = alpha * time + (1 - alpha) * processing_time
+
 def sla_penalty(current_time, request):
     time = current_time - request.arrival_time
+    update_processing_time(time)
     return request.service_type.sla_penalty(time)
 
 def finish_event_processor(current_time, request, events):
@@ -108,7 +115,7 @@ class InstanceLifeTime:
         self.instantiation_time = None
         self.terminatation_time = None
 
-INSTANTIATION_TIME = 10
+INSTANTIATION_TIME = 0
 def get_instantiation_time():
     return INSTANTIATION_TIME
 
@@ -161,6 +168,7 @@ class MonitoringDataQLen:
     def __init__(self,  queue_len):
         self.queue_len = queue_len
 
+'''
 QLEN_HIGH_THRESHOLD = 5
 QLEN_LOW_THRESHOLD = 3
 def monitor_event_processor(current_time, interval, events):
@@ -175,6 +183,36 @@ def monitor_event_processor(current_time, interval, events):
 
     if len(events) > 0:
         monitor_event_creator(current_time, interval, events)
+'''
+
+LOW_THRESHOLD = 3.710098751
+HIGH_THRESHOLD = 4.753636043
+SMALL_IL = 2
+BIG_IL = 5
+NO_CHANGE_IL = 0
+def infer_aiml(time):
+    if time <= LOW_THRESHOLD:
+        return SMALL_IL
+    elif time <= HIGH_THRESHOLD:
+        return NO_CHANGE_IL
+    else:
+        return BIG_IL
+
+processing_time = 0
+def monitor_event_processor(current_time, interval, events):
+    target_il = infer_aiml(processing_time)
+    
+    logging.debug("monitor_event_processor: time = %s, target_il = %d", current_time, target_il)
+
+    if target_il == SMALL_IL:
+        for _ in range(number_of_instances - SMALL_IL):
+            termination_event_creator(current_time, events)
+    elif target_il == BIG_IL:
+        for _ in range(BIG_IL - number_of_instances):
+            instantiate_event_creator(current_time, events)
+ 
+    if len(events) > 0:
+        monitor_event_creator(current_time, interval, events)           
 
 def monitor_event_creator(current_time, interval, events):
     logging.debug("monitor_event_creator: time = %s", current_time)
@@ -210,17 +248,18 @@ def run(events):
         last_time = event.time
         event.processor(event.time, event.data, events)
 
-        logging.debug("number_of_instances = %s, number_of_empty_instances = %s, Q len = %s", number_of_instances, number_of_empty_instances, requests_queue.qsize())
+        logging.debug("number_of_instances = %s number_of_empty_instances = %s Q len = %s", number_of_instances, number_of_empty_instances, requests_queue.qsize())
     
     return last_time
 
-INSTANTIATION_COST = 30000
+INSTANTIATION_COST = 1000
 def instantiation_cost():
     return INSTANTIATION_COST
 
-INSTANTCE_USAGE_PER_TIMER = 10
+INSTANTCE_USAGE_PER_TIMER = 100
 def instance_usage_cost(ht):
-    return ht * INSTANTIATION_TIME
+    print("ht = ", ht)
+    return ht * INSTANTCE_USAGE_PER_TIMER
 
 def instances_costs():
     total_cost = 0
@@ -236,13 +275,25 @@ def sla_cost():
 
 if __name__ == "__main__":
     
-    arrival_rates = [request_generator.ArrivalRateDynamics(0.25, 1.0), request_generator.ArrivalRateDynamics(0.5, 2.0), request_generator.ArrivalRateDynamics(0.25, 0.5)]
-    service_type = request_generator.ServiceType1(0.030, 5 * 1.0 / 4.0)
-    simulation_time = 200
-    iterations = 2
+    arrival_rates = [
+            request_generator.ArrivalRateDynamics(0.1, 1), 
+            request_generator.ArrivalRateDynamics(0.1, 2), 
+            request_generator.ArrivalRateDynamics(0.1, 3), 
+            request_generator.ArrivalRateDynamics(0.1, 4), 
+            request_generator.ArrivalRateDynamics(0.2, 5), 
+            request_generator.ArrivalRateDynamics(0.1, 4), 
+            request_generator.ArrivalRateDynamics(0.1, 3), 
+            request_generator.ArrivalRateDynamics(0.1, 2), 
+            request_generator.ArrivalRateDynamics(0.1, 1), 
+        ]
+    service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
+    simulation_time = 1000
+    iterations = 10
 
-    fix_inst_costs_arr = []
-    fix_sla_costs_arr  = []
+    fix_inst_costs_arr_small = []
+    fix_sla_costs_arr_small  = []
+    fix_inst_costs_arr_big = []
+    fix_sla_costs_arr_big  = []
     thre_inst_costs_arr = []
     thre_sla_costs_arr  = []
 
@@ -280,28 +331,42 @@ if __name__ == "__main__":
             logging.debug("instances_costs = %s, sla_cost = %s", inst_costs, sla_costs)
 
         ############ FIX Policy ##################
-        instance_num = 2
+        instance_num_small = SMALL_IL
+
         events = init()
 
-        for _ in range(instance_num):
+        for _ in range(instance_num_small):
             instantiate_event_creator(-100, events)
         
         last_time = run(events)
 
-        shutdown(instance_num, last_time)
-        res(fix_inst_costs_arr, fix_sla_costs_arr)
+        shutdown(instance_num_small, last_time)
+        res(fix_inst_costs_arr_small, fix_sla_costs_arr_small)
+        
 
+        instance_num_big = BIG_IL
+        
+        events = init()
+
+        for _ in range(instance_num_big):
+            instantiate_event_creator(-100, events)
+        
+        last_time = run(events)
+
+        shutdown(instance_num_big, last_time)
+        res(fix_inst_costs_arr_big, fix_sla_costs_arr_big)
+        
         ############## Threshold scaling ###########
         logging.debug("------------------------------")
 
         events = init()
 
-        fill_monitoring_events(INSTANTIATION_TIME * 1.5, simulation_time, events)
+        fill_monitoring_events(simulation_time / 100.0, simulation_time, events)
         last_time = run(events)
 
         shutdown(number_of_instances, last_time)
         res(thre_inst_costs_arr, thre_sla_costs_arr)
-
    
-    print("Fix: instance_cost = ", sum(fix_inst_costs_arr) / iterations," sla cost = ", sum(fix_sla_costs_arr) / iterations)
-    print("Thr: instance_cost = ", sum(thre_inst_costs_arr) / iterations," sla cost = ", sum(thre_sla_costs_arr) / iterations)
+    print("Fix small: instance_cost = ", sum(fix_inst_costs_arr_small) / iterations," sla cost = ", sum(fix_sla_costs_arr_small) / iterations)
+    print("Fix big: instance_cost   = ", sum(fix_inst_costs_arr_big) / iterations," sla cost = ", sum(fix_sla_costs_arr_big) / iterations)
+    print("Thr: instance_cost       = ", sum(thre_inst_costs_arr) / iterations," sla cost = ", sum(thre_sla_costs_arr) / iterations)
