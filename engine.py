@@ -207,7 +207,7 @@ start_scaling_interval_big = 0
 last_sla_violation_cost = 0
 interval_sla_violation_cost = 0
 SCALE_UP_THRESHOLD = 0.15
-SCALE_DOWN_THRESHOLD = 0.15
+SCALE_DOWN_THRESHOLD = 0.10
 MONITORING_INTERVAL = 0
 
 def monitor_event_processor(current_time, interval, events):
@@ -321,19 +321,21 @@ def sla_cost():
 
 if __name__ == "__main__":
     rate_interval = 1.0 / 12.0
+    load_scale = 0.1
+
     arrival_rates = [
-            request_generator.ArrivalRateDynamics(rate_interval, 4),  
-            request_generator.ArrivalRateDynamics(rate_interval, 2), 
-            request_generator.ArrivalRateDynamics(rate_interval, 1), 
-            request_generator.ArrivalRateDynamics(rate_interval, 4), 
-            request_generator.ArrivalRateDynamics(rate_interval, 6), 
-            request_generator.ArrivalRateDynamics(rate_interval, 4), 
-            request_generator.ArrivalRateDynamics(rate_interval, 4), 
-            request_generator.ArrivalRateDynamics(rate_interval, 3), 
-            request_generator.ArrivalRateDynamics(rate_interval, 4),
-            request_generator.ArrivalRateDynamics(rate_interval, 6),
-            request_generator.ArrivalRateDynamics(rate_interval, 6),
-            request_generator.ArrivalRateDynamics(rate_interval, 5)
+            request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale),  
+            request_generator.ArrivalRateDynamics(rate_interval, 2 * load_scale), 
+            request_generator.ArrivalRateDynamics(rate_interval, 1 * load_scale), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale), 
+            request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale), 
+            request_generator.ArrivalRateDynamics(rate_interval, 3 * load_scale), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale),
+            request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
+            request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
+            request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale)
         ]
     service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
     simulation_time = 100
@@ -363,6 +365,10 @@ if __name__ == "__main__":
             sla_penalty_cost = []
             global instances
             instances = []
+            global start_scaling_interval_small
+            start_scaling_interval_small = 0
+            global start_scaling_interval_big
+            start_scaling_interval_big = 0
 
             events = start()
             fill_arrival_events(requests, events)
@@ -394,7 +400,7 @@ if __name__ == "__main__":
         shutdown(instance_num_small, last_time)
         res(fix_inst_costs_arr_small, fix_sla_costs_arr_small)
         
-
+        '''
         instance_num_big = BIG_IL
         
         events = init()
@@ -417,7 +423,8 @@ if __name__ == "__main__":
 
         shutdown(number_of_instances, last_time)
         res(thre_inst_costs_arr, thre_sla_costs_arr)
-   
+        '''
+
     print("Fix small: instance_cost = ", sum(fix_inst_costs_arr_small) / iterations," sla cost = ", sum(fix_sla_costs_arr_small) / iterations)
     print("Fix big: instance_cost   = ", sum(fix_inst_costs_arr_big) / iterations," sla cost = ", sum(fix_sla_costs_arr_big) / iterations)
     print("Thr: instance_cost       = ", sum(thre_inst_costs_arr) / iterations," sla cost = ", sum(thre_sla_costs_arr) / iterations)
