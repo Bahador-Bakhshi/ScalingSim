@@ -188,8 +188,14 @@ def monitor_event_processor(current_time, interval, events):
         monitor_event_creator(current_time, interval, events)
 '''
 
-LOW_THRESHOLD = 3.710098751
-HIGH_THRESHOLD = 4.753636043
+#Automative
+#LOW_THRESHOLD = 3.710098751
+#HIGH_THRESHOLD = 4.753636043
+
+#Bird eye
+LOW_THRESHOLD = 14.75434705
+HIGH_THRESHOLD = 26.15610977
+
 SMALL_IL = 2
 BIG_IL = 5
 NO_CHANGE_IL = 0
@@ -337,7 +343,10 @@ if __name__ == "__main__":
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale)
         ]
-    service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
+    #Automative
+    #service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
+    #Bird Eye
+    service_type = request_generator.ServiceType2(0.8, 14.7, 26.2)
     simulation_time = 100
     iterations = 10
 
@@ -400,7 +409,6 @@ if __name__ == "__main__":
         shutdown(instance_num_small, last_time)
         res(fix_inst_costs_arr_small, fix_sla_costs_arr_small)
         
-        '''
         instance_num_big = BIG_IL
         
         events = init()
@@ -423,7 +431,6 @@ if __name__ == "__main__":
 
         shutdown(number_of_instances, last_time)
         res(thre_inst_costs_arr, thre_sla_costs_arr)
-        '''
 
     print("Fix small: instance_cost = ", sum(fix_inst_costs_arr_small) / iterations," sla cost = ", sum(fix_sla_costs_arr_small) / iterations)
     print("Fix big: instance_cost   = ", sum(fix_inst_costs_arr_big) / iterations," sla cost = ", sum(fix_sla_costs_arr_big) / iterations)
