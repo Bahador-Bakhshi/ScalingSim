@@ -12,8 +12,8 @@ class ServiceType:
         self.delay_threshold2 = delay_threshold2
    
 class ServiceType1(ServiceType):
-    SLA_PENALTY_PER_TIME_1 = 0.1
-    SLA_PENALTY_PER_TIME_2 = 0.2
+    SLA_PENALTY_PER_TIME_1 = 1
+    SLA_PENALTY_PER_TIME_2 = 2
     
     def __init__(self, mu, delay_threshold1, delay_threshold2):
         super().__init__(mu, delay_threshold1, delay_threshold2)

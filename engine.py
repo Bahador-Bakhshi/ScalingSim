@@ -94,6 +94,9 @@ def finish_event_processor(current_time, request, events):
     logging.debug("finish_event_processor: SLA penalty = %f", penalty)
     sla_penalty_cost.append(penalty)
 
+    global last_sla_violation_cost
+    last_sla_violation_cost += penalty
+
     global number_of_empty_instances
     number_of_empty_instances += 1
  
@@ -199,18 +202,61 @@ def infer_aiml(time):
         return BIG_IL
 
 processing_time = 0
+start_scaling_interval_small = 0
+start_scaling_interval_big = 0
+last_sla_violation_cost = 0
+interval_sla_violation_cost = 0
+SCALE_UP_THRESHOLD = 0.15
+SCALE_DOWN_THRESHOLD = 0.15
+MONITORING_INTERVAL = 0
+
 def monitor_event_processor(current_time, interval, events):
     target_il = infer_aiml(processing_time)
     
     logging.debug("monitor_event_processor: time = %s, target_il = %d", current_time, target_il)
 
+    global start_scaling_interval_small
+    global start_scaling_interval_big
+    global interval_sla_violation_cost
+    global last_sla_violation_cost
+    
     if target_il == SMALL_IL:
-        for _ in range(number_of_instances - SMALL_IL):
-            termination_event_creator(current_time, events)
+        logging.debug("target_il == SMALL_IL")
+        if start_scaling_interval_small == 0:
+            logging.debug("restart start_scaling_interval_small")
+            start_scaling_interval_small = 1
+            interval_sla_violation_cost = (BIG_IL - SMALL_IL) * INSTANTCE_USAGE_PER_TIMER * MONITORING_INTERVAL
+        else:
+            print("continue start_scaling_interval_small")
+            interval_sla_violation_cost += (BIG_IL - SMALL_IL) * INSTANTCE_USAGE_PER_TIMER * MONITORING_INTERVAL
+
+            if interval_sla_violation_cost > SCALE_DOWN_THRESHOLD * INSTANTIATION_COST:
+                print("try to terminate...")
+                interval_sla_violation_cost = 0
+                start_scaling_interval_small = 0
+                for _ in range(number_of_instances - SMALL_IL):
+                    termination_event_creator(current_time, events)
     elif target_il == BIG_IL:
-        for _ in range(BIG_IL - number_of_instances):
-            instantiate_event_creator(current_time, events)
- 
+        print("target_il == BIG_IL")
+        if start_scaling_interval_big == 0:
+            print("restart start_scaling_interval_big")
+            start_scaling_interval_big = 1
+            interval_sla_violation_cost = last_sla_violation_cost
+        else:
+            print("continue start_scaling_interval_big")
+            interval_sla_violation_cost += last_sla_violation_cost
+
+            if interval_sla_violation_cost > SCALE_UP_THRESHOLD:
+                interval_sla_violation_cost = 0
+                start_scaling_interval_big = 0
+                for _ in range(BIG_IL - number_of_instances):
+                    instantiate_event_creator(current_time, events)
+    else:
+        print("target_il = NO_CHANGE_IL")
+        start_scaling_interval_small = 0
+        start_scaling_interval_big = 0
+
+    last_sla_violation_cost = 0
     if len(events) > 0:
         monitor_event_creator(current_time, interval, events)           
 
@@ -274,21 +320,26 @@ def sla_cost():
     return sum(sla_penalty_cost)
 
 if __name__ == "__main__":
-    
+    rate_interval = 1.0 / 12.0
     arrival_rates = [
-            request_generator.ArrivalRateDynamics(0.1, 1), 
-            request_generator.ArrivalRateDynamics(0.1, 2), 
-            request_generator.ArrivalRateDynamics(0.1, 3), 
-            request_generator.ArrivalRateDynamics(0.1, 4), 
-            request_generator.ArrivalRateDynamics(0.2, 5), 
-            request_generator.ArrivalRateDynamics(0.1, 4), 
-            request_generator.ArrivalRateDynamics(0.1, 3), 
-            request_generator.ArrivalRateDynamics(0.1, 2), 
-            request_generator.ArrivalRateDynamics(0.1, 1), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4),  
+            request_generator.ArrivalRateDynamics(rate_interval, 2), 
+            request_generator.ArrivalRateDynamics(rate_interval, 1), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4), 
+            request_generator.ArrivalRateDynamics(rate_interval, 6), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4), 
+            request_generator.ArrivalRateDynamics(rate_interval, 3), 
+            request_generator.ArrivalRateDynamics(rate_interval, 4),
+            request_generator.ArrivalRateDynamics(rate_interval, 6),
+            request_generator.ArrivalRateDynamics(rate_interval, 6),
+            request_generator.ArrivalRateDynamics(rate_interval, 5)
         ]
     service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
-    simulation_time = 1000
+    simulation_time = 100
     iterations = 10
+
+    MONITORING_INTERVAL = simulation_time / 100.0
 
     fix_inst_costs_arr_small = []
     fix_sla_costs_arr_small  = []
@@ -361,7 +412,7 @@ if __name__ == "__main__":
 
         events = init()
 
-        fill_monitoring_events(simulation_time / 100.0, simulation_time, events)
+        fill_monitoring_events(MONITORING_INTERVAL, simulation_time, events)
         last_time = run(events)
 
         shutdown(number_of_instances, last_time)
