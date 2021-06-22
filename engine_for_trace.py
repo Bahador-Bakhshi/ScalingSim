@@ -65,7 +65,7 @@ def reporter(prefix, time):
     
     total_inst_cost += instantation_cost + usage_cost
     sla_cost = sum(sla_penalty_cost)
-    logging.debug("%s: inst = %d empt = %d delay = %f inst_cost = %f sla_cost = %f", prefix, number_of_created_instances, number_of_empty_instances, last_processing_time, total_inst_cost, sla_cost)
+    logging.debug("%s: t = %s, inst = %d empt = %d delay = %f inst_cost = %f sla_cost = %f", prefix, time, number_of_created_instances, number_of_empty_instances, last_processing_time, total_inst_cost, sla_cost)
     last_number_of_created_instances = number_of_created_instances
 
 def arrival_event_processor(current_time, request, events):
@@ -361,7 +361,7 @@ def run(events):
 
 if __name__ == "__main__":
     rate_interval = 1.0 / 12.0
-    load_scale = 0.5
+    load_scale = 0.7
 
     arrival_rates = [
             request_generator.ArrivalRateDynamics(rate_interval, 1 * load_scale), 
@@ -381,8 +381,8 @@ if __name__ == "__main__":
     #service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
     #Bird Eye
     service_type = request_generator.ServiceType2(0.8, 14.7, 26.2)
-    simulation_time = 100
-    iterations = 200
+    simulation_time = 1000
+    iterations = 1
 
     MONITORING_INTERVAL = simulation_time / 100.0
 
