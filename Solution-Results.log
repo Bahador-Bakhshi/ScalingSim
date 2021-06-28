@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.4.13)  25 JUN 2021 11:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.4.13)  28 JUN 2021 15:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -441,55 +441,67 @@ LaTeX Warning: Reference `sec:automotive-services' on page 2 undefined on input
  line 283.
 
 [2]
-Package epstopdf Info: Source file: <./figures/S-VNFDinstance_trace.eps>
-(epstopdf)                    date: 2021-06-24 17:37:27
-(epstopdf)                    size: 32555 bytes
-(epstopdf)             Output file: <./figures/S-VNFDinstance_trace-eps-convert
-ed-to.pdf>
-(epstopdf)                    date: 2021-06-24 17:37:31
-(epstopdf)                    size: 15010 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/S-VNFDinstance_t
-race-eps-converted-to.pdf ./figures/S-VNFDinstance_trace.eps>
+Package epstopdf Info: Source file: <./figures/S-NSDinstance_trace.eps>
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 32202 bytes
+(epstopdf)             Output file: <./figures/S-NSDinstance_trace-eps-converte
+d-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=./figures/S-NSDinstance_tr
+ace-eps-converted-to.pdf ./figures/S-NSDinstance_trace.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
-<./figures/S-VNFDinstance_trace-eps-converted-to.pdf, id=25, 450.86441pt x 338.
-11319pt>
-File: ./figures/S-VNFDinstance_trace-eps-converted-to.pdf Graphic file (type pd
-f)
-<use ./figures/S-VNFDinstance_trace-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/S-VNFDinstance_trace-eps-converted-to.pdf  u
-sed on input line 283.
+runsystem(repstopdf --outfile=./figures/S-NSDinstance_trace-eps-converted-to.pd
+f ./figures/S-NSDinstance_trace.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/S-NSDinstance_trace-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:23
+(epstopdf)                    size: 14596 bytes.
+<./figures/S-NSDinstance_trace-eps-converted-to.pdf, id=25, 450.86441pt x 338.1
+1319pt>
+File: ./figures/S-NSDinstance_trace-eps-converted-to.pdf Graphic file (type pdf
+)
+<use ./figures/S-NSDinstance_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/S-NSDinstance_trace-eps-converted-to.pdf  us
+ed on input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 123.83076pt.
-Package epstopdf Info: Source file: <./figures/B-VNFDinstance_trace.eps>
-(epstopdf)                    date: 2021-06-24 17:37:27
-(epstopdf)                    size: 35207 bytes
-(epstopdf)             Output file: <./figures/B-VNFDinstance_trace-eps-convert
-ed-to.pdf>
-(epstopdf)                    date: 2021-06-24 17:37:32
-(epstopdf)                    size: 15336 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/B-VNFDinstance_t
-race-eps-converted-to.pdf ./figures/B-VNFDinstance_trace.eps>
+Package epstopdf Info: Source file: <./figures/B-NSDinstance_trace.eps>
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 35582 bytes
+(epstopdf)             Output file: <./figures/B-NSDinstance_trace-eps-converte
+d-to.pdf>
+(epstopdf)             Command: <repstopdf --outfile=./figures/B-NSDinstance_tr
+ace-eps-converted-to.pdf ./figures/B-NSDinstance_trace.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
-<./figures/B-VNFDinstance_trace-eps-converted-to.pdf, id=26, 450.90457pt x 338.
-11319pt>
-File: ./figures/B-VNFDinstance_trace-eps-converted-to.pdf Graphic file (type pd
-f)
-<use ./figures/B-VNFDinstance_trace-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/B-VNFDinstance_trace-eps-converted-to.pdf  u
-sed on input line 283.
+runsystem(repstopdf --outfile=./figures/B-NSDinstance_trace-eps-converted-to.pd
+f ./figures/B-NSDinstance_trace.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/B-NSDinstance_trace-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:23
+(epstopdf)                    size: 15421 bytes.
+<./figures/B-NSDinstance_trace-eps-converted-to.pdf, id=26, 450.90457pt x 338.1
+1319pt>
+File: ./figures/B-NSDinstance_trace-eps-converted-to.pdf Graphic file (type pdf
+)
+<use ./figures/B-NSDinstance_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/B-NSDinstance_trace-eps-converted-to.pdf  us
+ed on input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 123.82043pt.
 Package epstopdf Info: Source file: <./figures/ML-VRSinstance_trace.eps>
 (epstopdf)                    date: 2021-06-24 17:37:28
 (epstopdf)                    size: 35676 bytes
 (epstopdf)             Output file: <./figures/ML-VRSinstance_trace-eps-convert
 ed-to.pdf>
-(epstopdf)                    date: 2021-06-24 17:37:32
-(epstopdf)                    size: 15837 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/ML-VRSinstance_t
 race-eps-converted-to.pdf ./figures/ML-VRSinstance_trace.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/ML-VRSinstance_trace-eps-converted-to.p
+df ./figures/ML-VRSinstance_trace.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/ML-VRSinstance_trace-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:24
+(epstopdf)                    size: 15837 bytes.
 <./figures/ML-VRSinstance_trace-eps-converted-to.pdf, id=27, 450.90457pt x 338.
 11319pt>
 File: ./figures/ML-VRSinstance_trace-eps-converted-to.pdf Graphic file (type pd
@@ -498,53 +510,65 @@ f)
 Package pdftex.def Info: ./figures/ML-VRSinstance_trace-eps-converted-to.pdf  u
 sed on input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 123.82043pt.
-Package epstopdf Info: Source file: <./figures/S-VNFDcost_trace.eps>
-(epstopdf)                    date: 2021-06-25 08:49:41
-(epstopdf)                    size: 29801 bytes
-(epstopdf)             Output file: <./figures/S-VNFDcost_trace-eps-converted-t
-o.pdf>
-(epstopdf)                    date: 2021-06-25 08:49:44
-(epstopdf)                    size: 16095 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/S-VNFDcost_trace
--eps-converted-to.pdf ./figures/S-VNFDcost_trace.eps>
+Package epstopdf Info: Source file: <./figures/S-NSDcost_trace.eps>
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 29430 bytes
+(epstopdf)             Output file: <./figures/S-NSDcost_trace-eps-converted-to
+.pdf>
+(epstopdf)             Command: <repstopdf --outfile=./figures/S-NSDcost_trace-
+eps-converted-to.pdf ./figures/S-NSDcost_trace.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
-<./figures/S-VNFDcost_trace-eps-converted-to.pdf, id=28, 417.94144pt x 354.1832
-1pt>
-File: ./figures/S-VNFDcost_trace-eps-converted-to.pdf Graphic file (type pdf)
-<use ./figures/S-VNFDcost_trace-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/S-VNFDcost_trace-eps-converted-to.pdf  used 
-on input line 283.
+runsystem(repstopdf --outfile=./figures/S-NSDcost_trace-eps-converted-to.pdf ./
+figures/S-NSDcost_trace.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/S-NSDcost_trace-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:24
+(epstopdf)                    size: 15210 bytes.
+<./figures/S-NSDcost_trace-eps-converted-to.pdf, id=28, 417.94144pt x 354.18321
+pt>
+File: ./figures/S-NSDcost_trace-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/S-NSDcost_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/S-NSDcost_trace-eps-converted-to.pdf  used o
+n input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 139.93056pt.
-Package epstopdf Info: Source file: <./figures/B-VNFDcost_trace.eps>
-(epstopdf)                    date: 2021-06-25 08:49:41
-(epstopdf)                    size: 29759 bytes
-(epstopdf)             Output file: <./figures/B-VNFDcost_trace-eps-converted-t
-o.pdf>
-(epstopdf)                    date: 2021-06-25 08:49:44
-(epstopdf)                    size: 15786 bytes
-(epstopdf)             Command: <repstopdf --outfile=./figures/B-VNFDcost_trace
--eps-converted-to.pdf ./figures/B-VNFDcost_trace.eps>
+Package epstopdf Info: Source file: <./figures/B-NSDcost_trace.eps>
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 29406 bytes
+(epstopdf)             Output file: <./figures/B-NSDcost_trace-eps-converted-to
+.pdf>
+(epstopdf)             Command: <repstopdf --outfile=./figures/B-NSDcost_trace-
+eps-converted-to.pdf ./figures/B-NSDcost_trace.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
-<./figures/B-VNFDcost_trace-eps-converted-to.pdf, id=29, 410.96536pt x 354.1832
-1pt>
-File: ./figures/B-VNFDcost_trace-eps-converted-to.pdf Graphic file (type pdf)
-<use ./figures/B-VNFDcost_trace-eps-converted-to.pdf>
-Package pdftex.def Info: ./figures/B-VNFDcost_trace-eps-converted-to.pdf  used 
-on input line 283.
+runsystem(repstopdf --outfile=./figures/B-NSDcost_trace-eps-converted-to.pdf ./
+figures/B-NSDcost_trace.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/B-NSDcost_trace-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:25
+(epstopdf)                    size: 14907 bytes.
+<./figures/B-NSDcost_trace-eps-converted-to.pdf, id=29, 410.96536pt x 354.18321
+pt>
+File: ./figures/B-NSDcost_trace-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/B-NSDcost_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/B-NSDcost_trace-eps-converted-to.pdf  used o
+n input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 142.30849pt.
 Package epstopdf Info: Source file: <./figures/ML-VRScost_trace.eps>
 (epstopdf)                    date: 2021-06-25 08:49:41
 (epstopdf)                    size: 31225 bytes
 (epstopdf)             Output file: <./figures/ML-VRScost_trace-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2021-06-25 08:49:45
-(epstopdf)                    size: 16344 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/ML-VRScost_trace
 -eps-converted-to.pdf ./figures/ML-VRScost_trace.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/ML-VRScost_trace-eps-converted-to.pdf .
+/figures/ML-VRScost_trace.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/ML-VRScost_trace-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:25
+(epstopdf)                    size: 16344 bytes.
 <./figures/ML-VRScost_trace-eps-converted-to.pdf, id=30, 410.96536pt x 354.1832
 1pt>
 File: ./figures/ML-VRScost_trace-eps-converted-to.pdf Graphic file (type pdf)
@@ -553,16 +577,20 @@ Package pdftex.def Info: ./figures/ML-VRScost_trace-eps-converted-to.pdf  used
 on input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 142.30849pt.
 Package epstopdf Info: Source file: <./figures/Automative.eps>
-(epstopdf)                    date: 2021-06-25 08:53:27
-(epstopdf)                    size: 37224 bytes
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 36724 bytes
 (epstopdf)             Output file: <./figures/Automative-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2021-06-25 08:53:34
-(epstopdf)                    size: 19708 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/Automative-eps-c
 onverted-to.pdf ./figures/Automative.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/Automative-eps-converted-to.pdf ./figur
+es/Automative.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/Automative-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2021-06-28 15:10:26
+(epstopdf)                    size: 18810 bytes.
 <./figures/Automative-eps-converted-to.pdf, id=31, 410.96536pt x 313.98303pt>
 File: ./figures/Automative-eps-converted-to.pdf Graphic file (type pdf)
 <use ./figures/Automative-eps-converted-to.pdf>
@@ -570,15 +598,18 @@ Package pdftex.def Info: ./figures/Automative-eps-converted-to.pdf  used on inp
 ut line 283.
 (pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
 Package epstopdf Info: Source file: <./figures/bird_eye.eps>
-(epstopdf)                    date: 2021-06-25 08:53:28
-(epstopdf)                    size: 37228 bytes
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 36728 bytes
 (epstopdf)             Output file: <./figures/bird_eye-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-06-25 08:53:34
-(epstopdf)                    size: 19332 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-eps-con
 verted-to.pdf ./figures/bird_eye.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/bird_eye-eps-converted-to.pdf ./figures
+/bird_eye.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/bird_eye-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:26
+(epstopdf)                    size: 18430 bytes.
 <./figures/bird_eye-eps-converted-to.pdf, id=32, 410.96536pt x 313.98303pt>
 File: ./figures/bird_eye-eps-converted-to.pdf Graphic file (type pdf)
 <use ./figures/bird_eye-eps-converted-to.pdf>
@@ -586,16 +617,20 @@ Package pdftex.def Info: ./figures/bird_eye-eps-converted-to.pdf  used on input
  line 283.
 (pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
 Package epstopdf Info: Source file: <./figures/bird_eye-2days.eps>
-(epstopdf)                    date: 2021-06-25 08:53:27
-(epstopdf)                    size: 36004 bytes
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 35454 bytes
 (epstopdf)             Output file: <./figures/bird_eye-2days-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2021-06-25 08:53:35
-(epstopdf)                    size: 17904 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-2days-e
 ps-converted-to.pdf ./figures/bird_eye-2days.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/bird_eye-2days-eps-converted-to.pdf ./f
+igures/bird_eye-2days.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/bird_eye-2days-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2021-06-28 15:10:27
+(epstopdf)                    size: 17497 bytes.
 <./figures/bird_eye-2days-eps-converted-to.pdf, id=33, 417.94144pt x 313.98303p
 t>
 File: ./figures/bird_eye-2days-eps-converted-to.pdf Graphic file (type pdf)
@@ -604,16 +639,20 @@ Package pdftex.def Info: ./figures/bird_eye-2days-eps-converted-to.pdf  used on
  input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 124.04828pt.
 Package epstopdf Info: Source file: <./figures/Automative-bar.eps>
-(epstopdf)                    date: 2021-06-25 08:56:58
-(epstopdf)                    size: 32859 bytes
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 32354 bytes
 (epstopdf)             Output file: <./figures/Automative-bar-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2021-06-25 08:57:04
-(epstopdf)                    size: 15274 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/Automative-bar-e
 ps-converted-to.pdf ./figures/Automative-bar.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/Automative-bar-eps-converted-to.pdf ./f
+igures/Automative-bar.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/Automative-bar-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2021-06-28 15:10:27
+(epstopdf)                    size: 14855 bytes.
 <./figures/Automative-bar-eps-converted-to.pdf, id=34, 410.96536pt x 313.98303p
 t>
 File: ./figures/Automative-bar-eps-converted-to.pdf Graphic file (type pdf)
@@ -622,16 +661,20 @@ Package pdftex.def Info: ./figures/Automative-bar-eps-converted-to.pdf  used on
  input line 283.
 (pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
 Package epstopdf Info: Source file: <./figures/bird_eye-bar.eps>
-(epstopdf)                    date: 2021-06-25 08:56:58
-(epstopdf)                    size: 30843 bytes
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 30338 bytes
 (epstopdf)             Output file: <./figures/bird_eye-bar-eps-converted-to.pd
 f>
-(epstopdf)                    date: 2021-06-25 08:57:04
-(epstopdf)                    size: 15117 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-bar-eps
 -converted-to.pdf ./figures/bird_eye-bar.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/bird_eye-bar-eps-converted-to.pdf ./fig
+ures/bird_eye-bar.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/bird_eye-bar-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2021-06-28 15:10:28
+(epstopdf)                    size: 14702 bytes.
 <./figures/bird_eye-bar-eps-converted-to.pdf, id=35, 410.96536pt x 313.98303pt>
 
 File: ./figures/bird_eye-bar-eps-converted-to.pdf Graphic file (type pdf)
@@ -640,16 +683,20 @@ Package pdftex.def Info: ./figures/bird_eye-bar-eps-converted-to.pdf  used on i
 nput line 283.
 (pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
 Package epstopdf Info: Source file: <./figures/bird_eye-2days-bar.eps>
-(epstopdf)                    date: 2021-06-25 08:56:57
-(epstopdf)                    size: 29615 bytes
+(epstopdf)                    date: 2021-06-28 15:09:57
+(epstopdf)                    size: 29212 bytes
 (epstopdf)             Output file: <./figures/bird_eye-2days-bar-eps-converted
 -to.pdf>
-(epstopdf)                    date: 2021-06-25 08:57:05
-(epstopdf)                    size: 13952 bytes
 (epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-2days-b
 ar-eps-converted-to.pdf ./figures/bird_eye-2days-bar.eps>
 (epstopdf)             \includegraphics on input line 283.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=./figures/bird_eye-2days-bar-eps-converted-to.pdf
+ ./figures/bird_eye-2days-bar.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <./figures/bird_eye-2days-bar-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2021-06-28 15:10:29
+(epstopdf)                    size: 13543 bytes.
 <./figures/bird_eye-2days-bar-eps-converted-to.pdf, id=36, 417.94144pt x 313.98
 303pt>
 File: ./figures/bird_eye-2days-bar-eps-converted-to.pdf Graphic file (type pdf)
@@ -672,14 +719,14 @@ Before submitting the final camera ready copy, remember to:
 
 [3
 
-] [4 <./figures/S-VNFDinstance_trace-eps-converted-to.pdf> <./figures/B-VNFDins
-tance_trace-eps-converted-to.pdf> <./figures/ML-VRSinstance_trace-eps-converted
--to.pdf> <./figures/S-VNFDcost_trace-eps-converted-to.pdf> <./figures/B-VNFDcos
-t_trace-eps-converted-to.pdf> <./figures/ML-VRScost_trace-eps-converted-to.pdf>
- <./figures/Automative-eps-converted-to.pdf> <./figures/bird_eye-eps-converted-
-to.pdf> <./figures/bird_eye-2days-eps-converted-to.pdf> <./figures/Automative-b
-ar-eps-converted-to.pdf> <./figures/bird_eye-bar-eps-converted-to.pdf> <./figur
-es/bird_eye-2days-bar-eps-converted-to.pdf>] (./Solution-Results.aux)
+] [4 <./figures/S-NSDinstance_trace-eps-converted-to.pdf> <./figures/B-NSDinsta
+nce_trace-eps-converted-to.pdf> <./figures/ML-VRSinstance_trace-eps-converted-t
+o.pdf> <./figures/S-NSDcost_trace-eps-converted-to.pdf> <./figures/B-NSDcost_tr
+ace-eps-converted-to.pdf> <./figures/ML-VRScost_trace-eps-converted-to.pdf> <./
+figures/Automative-eps-converted-to.pdf> <./figures/bird_eye-eps-converted-to.p
+df> <./figures/bird_eye-2days-eps-converted-to.pdf> <./figures/Automative-bar-e
+ps-converted-to.pdf> <./figures/bird_eye-bar-eps-converted-to.pdf> <./figures/b
+ird_eye-2days-bar-eps-converted-to.pdf>] (./Solution-Results.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -689,7 +736,7 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  6079 strings out of 483056
- 93198 string characters out of 5963250
+ 93174 string characters out of 5963250
  338568 words of memory out of 5000000
  21024 multiletter control sequences out of 15000+600000
  571091 words of font info for 98 fonts, out of 8000000 for 9000
@@ -711,10 +758,10 @@ ive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on Solution-Results.pdf (4 pages, 309337 bytes).
+Output written on Solution-Results.pdf (4 pages, 305968 bytes).
 PDF statistics:
- 573 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
+ 546 PDF objects out of 1000 (max. 8388607)
+ 127 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -69,13 +69,13 @@ def load_trace(trace_file_name, outname):
     rate_aiml  = rate.copy()
     rate_big   = [x + width for x in rate]
     
-    plt.bar(rate_small, small_inst, width, label='S-VNFD-Prov', color='tab:orange')
-    plt.bar(rate_aiml, aiml_inst, width, label='ML-VRS-Prov', color='tab:green')
-    plt.bar(rate_big, big_inst, width, label='B-VNFD-Prov', color='tab:brown')
+    plt.bar(rate_small, small_inst, width, label='S-NSD-Prov', color='tab:orange')
+    plt.bar(rate_aiml, aiml_inst, width, label='ML-RS-Prov', color='tab:green')
+    plt.bar(rate_big, big_inst, width, label='B-NSD-Prov', color='tab:brown')
 
-    plt.bar(rate_small, small_sla, width, label='S-VNFD-SLA', bottom=small_inst, color='tab:blue')
-    plt.bar(rate_aiml, aiml_sla, width, label='ML-VRS-SLA', bottom=aiml_inst, color='tab:red')
-    plt.bar(rate_big, big_sla, width, label='B-VNFD-SLA', bottom=big_inst, color='tab:cyan')
+    plt.bar(rate_small, small_sla, width, label='S-NSD-SLA', bottom=small_inst, color='tab:blue')
+    plt.bar(rate_aiml, aiml_sla, width, label='ML-RS-SLA', bottom=aiml_inst, color='tab:red')
+    plt.bar(rate_big, big_sla, width, label='B-NSD-SLA', bottom=big_inst, color='tab:cyan')
 
     #plt.ylim(-5,100)
     ax1.tick_params(axis='y')

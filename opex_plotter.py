@@ -63,17 +63,17 @@ def load_trace(trace_file_name, outname):
 
     ax1.set_ylabel(r'Cost ($10^3$)')
 
-    lns1 = ax1.plot(rate, small_inst, label='S-VNFD-Prov', color='tab:orange', linestyle='--', marker="s", fillstyle='none', linewidth=1)
-    lns2 = ax1.plot(rate, small_sla, label='S-VNFD-SLA', color='tab:orange', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
-    lns3 = ax1.plot(rate, small_total, label='S-VNFD-OPEX', color='tab:orange', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
+    lns1 = ax1.plot(rate, small_inst, label='S-NSD-Prov', color='tab:orange', linestyle='--', marker="s", fillstyle='none', linewidth=1)
+    lns2 = ax1.plot(rate, small_sla, label='S-NSD-SLA', color='tab:orange', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
+    lns3 = ax1.plot(rate, small_total, label='S-NSD-OPEX', color='tab:orange', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
     
-    lns1 = ax1.plot(rate, big_inst, label='B-VNFD-Prov', color='tab:blue', linestyle='--', marker="s", fillstyle='none', linewidth=1)
-    lns2 = ax1.plot(rate, big_sla, label='B-VNFD-SLA', color='tab:blue', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
-    lns3 = ax1.plot(rate, big_total, label='B-VNFD-OPEX', color='tab:blue', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
+    lns1 = ax1.plot(rate, big_inst, label='B-NSD-Prov', color='tab:blue', linestyle='--', marker="s", fillstyle='none', linewidth=1)
+    lns2 = ax1.plot(rate, big_sla, label='B-NSD-SLA', color='tab:blue', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
+    lns3 = ax1.plot(rate, big_total, label='B-NSD-OPEX', color='tab:blue', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
  
-    lns1 = ax1.plot(rate, aiml_inst, label='ML-VRS-Prov', color='tab:green', linestyle='--', marker="s", fillstyle='none', linewidth=1)
-    lns2 = ax1.plot(rate, aiml_sla, label='ML-VRS-SLA', color='tab:green', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
-    lns3 = ax1.plot(rate, aiml_total, label='ML-VRS-OPEX', color='tab:green', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
+    lns1 = ax1.plot(rate, aiml_inst, label='ML-RS-Prov', color='tab:green', linestyle='--', marker="s", fillstyle='none', linewidth=1)
+    lns2 = ax1.plot(rate, aiml_sla, label='ML-RS-SLA', color='tab:green', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
+    lns3 = ax1.plot(rate, aiml_total, label='ML-RS-OPEX', color='tab:green', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
  
     #plt.ylim(-5,100)
     ax1.tick_params(axis='y')
