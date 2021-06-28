@@ -191,27 +191,27 @@ The conditions in lines \ref{alg:vrs:sla_cost} ad \ref{alg:vrs:opr_cost} aims to
 \subsection{Simulation Results}
 \hlb{
 
-In this section, we evaluate the performance of the SLA management solution proposed for OPEX minimization. For this purpose, we consider the automotive services explained in \ref{sec:automotive-services}. It is assumed that the arrival and departure of requests are Poisson processes where the average arrival rate is time-varying over 24 hours period.  It increases from 4:00 to 10:00, decreases a bit from 10:00 to 15:00, then increases again until 22:00, and after that decrease again. The training dataset is labeled by three labels: ``small NSD'', ``big NSD'' and ``no change''; so, $\mathcal{D}=\{\text{Small-NSD}, \text{Big-NSD}\}$ and it is assumed that $d_{\text{Small-NSD}} = 2$, and $d_{\text{Big-NSD}} = 5$. We consider two-level SLA, i.e., $\Delta=\{\delta_{1}, \delta_{2}\}$ and $\mathcal{P}=\{p_{1}, p_{2}\}$. In these simulations, three strategies are compared: the {\small \textsf{S-NSD}} and {\small \textsf{B-NSD}} strategies that respectively instantiate 2 and 5 instances at the beginning and don't change it later, moreover, the {\small \textsf{ML-VRS}} strategy which is the proposed solution.
+In this section, we evaluate the performance of the SLA management solution proposed for OPEX minimization. For this purpose, we consider the automotive services explained in \ref{sec:automotive-services}. It is assumed that the arrival and departure of requests are Poisson processes where the average arrival rate is time-varying over 24 hours period.  It increases from 4:00 to 10:00, decreases a bit from 10:00 to 15:00, then increases again until 22:00, and after that decrease again. The training dataset is labeled by three labels: ``small NSD'', ``big NSD'' and ``no change''; so, $\mathcal{D}=\{\text{Small-NSD}, \text{Big-NSD}\}$ and it is assumed that $d_{\text{Small-NSD}} = 2$, and $d_{\text{Big-NSD}} = 5$. We consider two-level SLA, i.e., $\Delta=\{\delta_{1}, \delta_{2}\}$ and $\mathcal{P}=\{p_{1}, p_{2}\}$. In these simulations, three strategies are compared: the {\small \textsf{L-INS}} and {\small \textsf{H-INS}} strategies that respectively instantiate 2 and 5 instances at the beginning and don't change it later, moreover, the {\small \textsf{ML-RS}} strategy which is the proposed solution.
 
-Fig. \ref{fig:instance_trace} shows traces of the operation of the strategies for a period of time. In this figure, the number of created instances, the number of empty instances, and the service latency of each strategy are respectively postfixed by ``-CI'', ``-EI'', and ``-DL''. It is seen that, while the small number of instances by {\small \textsf{S-NSD}} are always busy but they are not sufficient to serve all the requests, and consequently, the processing latency grows exponentially. Contrarily, the large number of instances by {\small \textsf{B-NSD}} effectively decreases the processing latency but there is a considerable number of empty instances. On the other hand, the {\small \textsf{ML-VRS}} strategy efficiently keeps the processing latency under the SLA thresholds, which $\delta_{1} =$ 14.7 ms and $\delta =$ 26.2 ms in these simulations, and does not wast empty instances. This efficient scaling results in significant OPEX minimization which is depicted in Fig. \ref{fig:cost_trace}.
+Fig. \ref{fig:instance_trace} shows traces of the operation of the strategies for a period of time. In this figure, the number of created instances, the number of empty instances, and the service latency of each strategy are respectively postfixed by ``-CI'', ``-EI'', and ``-DL''. It is seen that, while the small number of instances by {\small \textsf{L-INS}} are always busy but they are not sufficient to serve all the requests, and consequently, the processing latency grows exponentially. Contrarily, the large number of instances by {\small \textsf{H-INS}} effectively decreases the processing latency but there is a considerable number of empty instances. On the other hand, the {\small \textsf{ML-RS}} strategy efficiently keeps the processing latency under the SLA thresholds, which $\delta_{1} =$ 14.7 ms and $\delta =$ 26.2 ms in these simulations, and does not wast empty instances. This efficient scaling results in significant OPEX minimization which is depicted in Fig. \ref{fig:cost_trace}.
 
-In Fig \ref{fig:cost_trace}, the SLA violation cost, the service provisioning cost, which is the sum of instantiation and operation costs, and also the OPEX are shown per scaling strategy. These results show that while {\small \textsf{S-NSD}} has the minimum provisioning cost, due to the significant SLA violation, the OPEX is the largest one. In the  {\small \textsf{B-NSD}}, the SLA violation is almost zero but because of the high operation cost, again the OPEX is significant. The {\small \textsf{ML-VRS}} has the minimum OPEX via appropriate resource scaling. The jumps in the OPEX are because of switching from the small NSD to the big NSD. 
+In Fig \ref{fig:cost_trace}, the SLA violation cost, the service provisioning cost, which is the sum of instantiation and operation costs, and also the OPEX are shown per scaling strategy. These results show that while {\small \textsf{L-INS}} has the minimum provisioning cost, due to the significant SLA violation, the OPEX is the largest one. In the  {\small \textsf{H-INS}}, the SLA violation is almost zero but because of the high operation cost, again the OPEX is significant. The {\small \textsf{ML-RS}} has the minimum OPEX via appropriate resource scaling. The jumps in the OPEX are because of switching from the small NSD to the big NSD. 
 
 
 \begin{figure*}
 \begin{subfigure}[h]{0.32\linewidth}
-\includegraphics[width=\linewidth]{./figures/S-NSDinstance_trace.eps}
-\caption{{\textsf{S-NSD}} Strategy}
+\includegraphics[width=\linewidth]{./figures/L-INSinstance_trace.eps}
+\caption{{\textsf{L-INS}} Strategy}
 \end{subfigure}
 \hfill
 \begin{subfigure}[h]{0.32\linewidth}
-\includegraphics[width=\linewidth]{./figures/B-NSDinstance_trace.eps}
-\caption{{\textsf{B-NSD}} Strategy}
+\includegraphics[width=\linewidth]{./figures/H-INSinstance_trace.eps}
+\caption{{\textsf{H-INS}} Strategy}
 \end{subfigure}
 \hfill
 \begin{subfigure}[h]{0.32\linewidth}
-\includegraphics[width=\linewidth]{./figures/ML-VRSinstance_trace.eps}
-\caption{{\textsf{ML-VRS}} Strategy}
+\includegraphics[width=\linewidth]{./figures/ML-RSinstance_trace.eps}
+\caption{{\textsf{ML-RS}} Strategy}
 \end{subfigure}
 \caption{The traces of operation of the scaling strategies that show the number of created instances, the number of empty instances, and the processing latency.}
 \label{fig:instance_trace}
@@ -220,24 +220,24 @@ In Fig \ref{fig:cost_trace}, the SLA violation cost, the service provisioning co
 
 \begin{figure*}
 \begin{subfigure}[h]{0.32\linewidth}
-\includegraphics[width=\linewidth]{./figures/S-NSDcost_trace.eps}
-\caption{{\textsf{S-NSD}} Strategy}
+\includegraphics[width=\linewidth]{./figures/L-INScost_trace.eps}
+\caption{{\textsf{L-INS}} Strategy}
 \end{subfigure}
 \hfill
 \begin{subfigure}[h]{0.32\linewidth}
-\includegraphics[width=\linewidth]{./figures/B-NSDcost_trace.eps}
-\caption{{\textsf{B-NSD}} Strategy}
+\includegraphics[width=\linewidth]{./figures/H-INScost_trace.eps}
+\caption{{\textsf{H-INS}} Strategy}
 \end{subfigure}
 \hfill
 \begin{subfigure}[h]{0.32\linewidth}
-\includegraphics[width=\linewidth]{./figures/ML-VRScost_trace.eps}
-\caption{{\textsf{ML-VRS}} Strategy}
+\includegraphics[width=\linewidth]{./figures/ML-RScost_trace.eps}
+\caption{{\textsf{ML-RS}} Strategy}
 \end{subfigure}
 \caption{The traces of cost of the scaling strategies that show the service provisioning cost, SLA violation cost, and the OPEX.}
 \label{fig:cost_trace}
 \end{figure*}
 
-To evaluate the performance of the strategies, they are compared with respect to the traffic load in Fig. \ref{fig:opex}. In these results, in each experiment, the arrival rate of the requests is multiplied by parameter $\ell$ and the total cost is computed over 24 hours period in \ref{fig:opex}-(a),(b) and over 48 hour period in \ref{fig:opex}-(c). These are the average results of 20 experiments per $\ell$. As it is shown, in the lightly loaded conditions, $\ell \leq 0.3$, all strategies comply with the SLA, so there is no SLA violation cost and because of over-provisioning, the OPEX of {\small \textsf{B-NSD}} is significant while {\small \textsf{S-NSD}} and {\small \textsf{ML-VRS}} use the minimum number of instances and have the same OPEX. By increasing $\ell$, the SLA violation cost of {\small \textsf{S-NSD}} grows exponentially but the proposed solution can maintain a negligible SLA violation by efficient resource scaling that minimizes the OPEX. In the highly loaded conditions $\ell > 1$, even the instances in the big descriptor are not sufficient to handle the offered load, so the proposed solution and the {\small \textsf{B-NSD}} has a similar performance.
+To evaluate the performance of the strategies, they are compared with respect to the traffic load in Fig. \ref{fig:opex}. In these results, in each experiment, the arrival rate of the requests is multiplied by parameter $\ell$ and the total cost is computed over 24 hours period in \ref{fig:opex}-(a),(b) and over 48 hour period in \ref{fig:opex}-(c). These are the average results of 20 experiments per $\ell$. As it is shown, in the lightly loaded conditions, $\ell \leq 0.3$, all strategies comply with the SLA, so there is no SLA violation cost and because of over-provisioning, the OPEX of {\small \textsf{H-INS}} is significant while {\small \textsf{L-INS}} and {\small \textsf{ML-RS}} use the minimum number of instances and have the same OPEX. By increasing $\ell$, the SLA violation cost of {\small \textsf{L-INS}} grows exponentially but the proposed solution can maintain a negligible SLA violation by efficient resource scaling that minimizes the OPEX. In the highly loaded conditions $\ell > 1$, even the instances in the big descriptor are not sufficient to handle the offered load, so the proposed solution and the {\small \textsf{H-INS}} has a similar performance.
 
 To summary, these results show the superiority of the ML-driven VNF resource scaling solution to simultaneously manage the SLA of requests and minimize the OPEX. The proposed solution demonstrates how the ML-driven algorithms can be deployed via the 5Growth platform.   
 

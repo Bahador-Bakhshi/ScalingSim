@@ -92,6 +92,6 @@ def per_alg_plotter(h,m,s,inst,sla,total,alg_name,y1_lim):
 
 h,m,s,small_inst,small_sla,small_total,big_inst,big_sla,big_total,aiml_inst,aiml_sla,aiml_total = load_trace("cost_trace.csv")
 
-per_alg_plotter(h,m,s,small_inst,small_sla,small_total,'S-NSD',10)
-per_alg_plotter(h,m,s,big_inst,big_sla,big_total,'B-NSD',8)
+per_alg_plotter(h,m,s,small_inst,small_sla,small_total,'L-INS',10)
+per_alg_plotter(h,m,s,big_inst,big_sla,big_total,'H-INS',8)
 per_alg_plotter(h,m,s,aiml_inst,aiml_sla,aiml_total,'ML-RS',8)

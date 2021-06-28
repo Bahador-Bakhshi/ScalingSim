@@ -100,6 +100,6 @@ def per_alg_plotter(h,m,s,inst,empty,delay,alg_name, bot_y1_lim, top_y1_lim, bot
 
 h,m,s,small_inst,small_empty,small_delay,big_inst,big_empty,big_delay,aiml_inst,aiml_empty,aiml_delay = load_trace("instance_trace.csv")
 
-per_alg_plotter(h,m,s,small_inst,small_empty,small_delay,'S-NSD',-0.5, 10, 25 * -0.5 / 10, 25)
-per_alg_plotter(h,m,s,big_inst,big_empty,big_delay,'B-NSD',-0.5, 8, -0.5, 8)
+per_alg_plotter(h,m,s,small_inst,small_empty,small_delay,'L-INS',-0.5, 10, 25 * -0.5 / 10, 25)
+per_alg_plotter(h,m,s,big_inst,big_empty,big_delay,'H-INS',-0.5, 8, -0.5, 8)
 per_alg_plotter(h,m,s,aiml_inst,aiml_empty,aiml_delay,'ML-RS',-0.5, 8, -0.5, 8)
