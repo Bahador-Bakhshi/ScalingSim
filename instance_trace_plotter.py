@@ -51,7 +51,7 @@ def load_trace(trace_file_name):
     return h,m,s,small_inst,small_empty,small_delay,big_inst,big_empty,big_delay,aiml_inst,aiml_empty,aiml_delay
 
 
-def per_alg_plotter(h,m,s,inst,empty,delay,alg_name,y1_lim,y2_lim):
+def per_alg_plotter(h,m,s,inst,empty,delay,alg_name, bot_y1_lim, top_y1_lim, bot_y2_lim, top_y2_lim):
     
     font = {
             'weight' : 'bold',
@@ -71,24 +71,25 @@ def per_alg_plotter(h,m,s,inst,empty,delay,alg_name,y1_lim,y2_lim):
     fig, ax1 = plt.subplots()
     plt.grid(linestyle="--", linewidth=0.5)
 
-    ax1.set_xlabel('time')
+    ax1.set_xlabel('Time')
     plt.xticks(ticks, labels, rotation="vertical")
-    ax1.set_ylabel('#', color='r')
-    plt.ylim(0,y1_lim)
+    ax1.set_ylabel('#', color='tab:orange')
+    ax1.set_ylim(bot_y1_lim, top_y1_lim)
 
-    lns1 = ax1.plot(x, inst, label=alg_name+'-CI', color='r', linestyle='--', linewidth=1)
-    lns2 = ax1.plot(x, empty, label=alg_name+'-EI', color='r', linestyle='solid', linewidth=1)
-    ax1.tick_params(axis='y', labelcolor='r')
+    lns1 = ax1.plot(x, inst, label=alg_name+'-CI', color='darkorange', linestyle='solid', linewidth=1.2)
+    lns2 = ax1.plot(x, empty, label=alg_name+'-EI', color='tab:orange', linestyle='-.', linewidth=1.2)
+    ax1.tick_params(axis='y', labelcolor='tab:orange')
+    
 
     ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+    ax2.set_ylabel(r'Time ($10^{-4}$s)', color='tab:blue')  # we already handled the x-label with ax1
+    ax2.set_ylim(bot_y2_lim, top_y2_lim)
 
-    plt.ylim(0,y2_lim)
-    ax2.set_ylabel(r'time ($10^{-4}$s)', color='b')  # we already handled the x-label with ax1
-    lns3 = ax2.plot(x, delay, label=alg_name+'-DL', color='b', linestyle='solid', linewidth=1)
-    ax2.tick_params(axis='y', labelcolor='b')
+    lns3 = ax2.plot(x, delay, label=alg_name+'-DL', color='tab:blue', linestyle='solid', linewidth=1.2)
+    ax2.tick_params(axis='y', labelcolor='tab:blue')
 
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
-
+    
     # added these three lines
     lns = lns1+lns2+lns3
     labs = [l.get_label() for l in lns]
@@ -99,6 +100,6 @@ def per_alg_plotter(h,m,s,inst,empty,delay,alg_name,y1_lim,y2_lim):
 
 h,m,s,small_inst,small_empty,small_delay,big_inst,big_empty,big_delay,aiml_inst,aiml_empty,aiml_delay = load_trace("instance_trace.csv")
 
-per_alg_plotter(h,m,s,small_inst,small_empty,small_delay,'S-VNFD',10,25)
-per_alg_plotter(h,m,s,big_inst,big_empty,big_delay,'B-VNFD',8,8)
-per_alg_plotter(h,m,s,aiml_inst,aiml_empty,aiml_delay,'AIML',8,8)
+per_alg_plotter(h,m,s,small_inst,small_empty,small_delay,'S-VNFD',-0.5, 10, 25 * -0.5 / 10, 25)
+per_alg_plotter(h,m,s,big_inst,big_empty,big_delay,'B-VNFD',-0.5, 8, -0.5, 8)
+per_alg_plotter(h,m,s,aiml_inst,aiml_empty,aiml_delay,'ML-VRS',-0.5, 8, -0.5, 8)

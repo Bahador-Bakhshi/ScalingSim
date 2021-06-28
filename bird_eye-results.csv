@@ -1,4 +1,4 @@
-﻿rate,small_inst,small_sla,small_total,big_inst,big_sla,big_total,aiml_inst,aiml_sla,aiml_total
+rate,small_inst,small_sla,small_total,big_inst,big_sla,big_total,aiml_inst,aiml_sla,aiml_total
 0.1,21928.69213,1,21929.69213,54782.75297,1.00E+00,5.48E+04,21404.99349,1,21405.99349
 0.3,22833.45227,1,22834.45227,55602.03106,1,5.56E+04,22800.03511,1,22801.03511
 0.5,29478.07146,705.3367678,30183.40822,55876.0893,1,5.59E+04,32161.41994,297.7231612,32459.1431

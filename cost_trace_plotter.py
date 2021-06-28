@@ -71,14 +71,14 @@ def per_alg_plotter(h,m,s,inst,sla,total,alg_name,y1_lim):
     fig, ax1 = plt.subplots()
     plt.grid(linestyle="--", linewidth=0.5)
 
-    ax1.set_xlabel('time')
+    ax1.set_xlabel('Time')
     plt.xticks(ticks, labels, rotation="vertical")
-    ax1.set_ylabel(r'cost ($10^3$)')
+    ax1.set_ylabel(r'Cost ($10^3$)')
     #plt.ylim(0,y1_lim)
 
-    lns1 = ax1.plot(x, inst, label=alg_name+'-Inst', color='r', linestyle='--', linewidth=1)
-    lns2 = ax1.plot(x, sla, label=alg_name+'-SLA', color='g', linestyle='solid', linewidth=1)
-    lns3 = ax1.plot(x, total, label=alg_name+'-OPEX', color='b', linestyle='solid', linewidth=1)
+    lns1 = ax1.plot(x, inst, label=alg_name+'-Prov', color='tab:blue', linestyle='solid', linewidth=1)
+    lns2 = ax1.plot(x, sla, label=alg_name+'-SLA', color='tab:orange', linestyle='solid', linewidth=1)
+    lns3 = ax1.plot(x, total, label=alg_name+'-OPEX', color='tab:green', linestyle='solid', linewidth=1)
     ax1.tick_params(axis='y')
 
 
@@ -94,4 +94,4 @@ h,m,s,small_inst,small_sla,small_total,big_inst,big_sla,big_total,aiml_inst,aiml
 
 per_alg_plotter(h,m,s,small_inst,small_sla,small_total,'S-VNFD',10)
 per_alg_plotter(h,m,s,big_inst,big_sla,big_total,'B-VNFD',8)
-per_alg_plotter(h,m,s,aiml_inst,aiml_sla,aiml_total,'AIML',8)
+per_alg_plotter(h,m,s,aiml_inst,aiml_sla,aiml_total,'ML-VRS',8)

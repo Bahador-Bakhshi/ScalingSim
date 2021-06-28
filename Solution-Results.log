@@ -1,0 +1,720 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.4.13)  25 JUN 2021 11:13
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Solution-Results.tex
+(./Solution-Results.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+(/usr/share/texlive/texmf-dist/tex/latex/IEEEtran/IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen134
+\@IEEEtrantmpdimenB=\dimen135
+\@IEEEtrantmpdimenC=\dimen136
+\@IEEEtrantmpcountA=\count167
+\@IEEEtrantmpcountB=\count168
+\@IEEEtrantmpcountC=\count169
+\@IEEEtrantmptoksA=\toks14
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 5
+03.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+\@IEEEnormalsizeunitybaselineskip=\dimen137
+-- This is a 10 point document.
+\CLASSINFOnormalsizebaselineskip=\dimen138
+\CLASSINFOnormalsizeunitybaselineskip=\dimen139
+\IEEEnormaljot=\dimen140
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1090.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1090.
+
+\IEEEquantizedlength=\dimen141
+\IEEEquantizedlengthdiff=\dimen142
+\IEEEquantizedtextheightdiff=\dimen143
+\IEEEilabelindentA=\dimen144
+\IEEEilabelindentB=\dimen145
+\IEEEilabelindent=\dimen146
+\IEEEelabelindent=\dimen147
+\IEEEdlabelindent=\dimen148
+\IEEElabelindent=\dimen149
+\IEEEiednormlabelsep=\dimen150
+\IEEEiedmathlabelsep=\dimen151
+\IEEEiedtopsep=\skip47
+\c@section=\count170
+\c@subsection=\count171
+\c@subsubsection=\count172
+\c@paragraph=\count173
+\c@IEEEsubequation=\count174
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\c@figure=\count175
+\c@table=\count176
+\@IEEEeqnnumcols=\count177
+\@IEEEeqncolcnt=\count178
+\@IEEEsubeqnnumrollback=\count179
+\@IEEEquantizeheightA=\dimen152
+\@IEEEquantizeheightB=\dimen153
+\@IEEEquantizeheightC=\dimen154
+\@IEEEquantizeprevdepth=\dimen155
+\@IEEEquantizemultiple=\count180
+\@IEEEquantizeboxA=\box45
+\@IEEEtmpitemindent=\dimen156
+\IEEEPARstartletwidth=\dimen157
+\c@IEEEbiography=\count181
+\@IEEEtranrubishbin=\box46
+)
+** ATTENTION: Overriding command lockouts (line 3).
+(/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks15
+\ex@=\dimen158
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen159
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count182
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count183
+\leftroot@=\count184
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count185
+\DOTSCASE@=\count186
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box47
+\strutbox@=\box48
+\big@size=\dimen160
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count187
+\c@MaxMatrixCols=\count188
+\dotsspace@=\muskip16
+\c@parentequation=\count189
+\dspbrk@lvl=\count190
+\tag@help=\toks16
+\row@=\count191
+\column@=\count192
+\maxfields@=\count193
+\andhelp@=\toks17
+\eqnshift@=\dimen161
+\alignsep@=\dimen162
+\tagshift@=\dimen163
+\tagwidth@=\dimen164
+\totwidth@=\dimen165
+\lineht@=\dimen166
+\@envbody=\toks18
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count194
+\float@exts=\toks20
+\float@box=\box49
+\@float@everytoks=\toks21
+\@floatcapt=\box50
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks22
+\c@algorithm=\count195
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count196
+\c@ALG@rem=\count197
+\c@ALG@nested=\count198
+\ALG@tlm=\skip53
+\ALG@thistlm=\skip54
+\c@ALG@Lnr=\count199
+\c@ALG@blocknr=\count266
+\c@ALG@storecount=\count267
+\c@ALG@tmpcounter=\count268
+\ALG@tmplength=\skip55
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen167
+\Gin@req@width=\dimen168
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 209.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip56
+\multirow@cntb=\count269
+\multirow@dima=\skip57
+\bigstrutjot=\dimen169
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen170
+\ar@mcellbox=\box51
+\extrarowheight=\dimen171
+\NC@list=\toks24
+\extratabsurround=\skip58
+\backup@length=\skip59
+\ar@cellbox=\box52
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen172
+\captionmargin@=\dimen173
+\captionwidth=\dimen174
+\caption@tempdima=\dimen175
+\caption@indent=\dimen176
+\caption@parindent=\dimen177
+\caption@hangindent=\dimen178
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEta
+blestring \footnotesize \bgroup \par \centering \@IEEEtabletopskipstrut {\norma
+lfont \footnotesize #1}\\{\normalfont \footnotesize \scshape #2}\par \addvspace
+ {0.5\baselineskip }\egroup \@IEEEtablecaptionsepspace \else \@IEEEfigurecaptio
+nsepspace \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspac
+e \nobreakspace #2}\ifdim \wd \@tempboxa >\hsize \setbox \@tempboxa \hbox {\nor
+malfont \footnotesize {#1.}\nobreakspace \nobreakspace }\parbox [t]{\hsize }{\n
+ormalfont \footnotesize \noindent \unhbox \@tempboxa #2}\else \ifCLASSOPTIONcon
+ference \hbox to\hsize {\normalfont \footnotesize \hfil \box \@tempboxa \hfil }
+\else \hbox to\hsize {\normalfont \footnotesize \box \@tempboxa \hfil }\fi \fi 
+\fi  on input line 1082.
+)
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count270
+\c@continuedfloat=\count271
+Package caption Info: float package is loaded.
+)
+\c@subfigure=\count272
+\c@subtable=\count273
+) (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks25
+\SOUL@lasttoken=\toks26
+\SOUL@cmds=\toks27
+\SOUL@buffer=\toks28
+\SOUL@token=\toks29
+\SOUL@spaceskip=\skip60
+\SOUL@ttwidth=\dimen179
+\SOUL@uldp=\dimen180
+\SOUL@ulht=\dimen181
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count274
+\l__pdf_internal_box=\box53
+)
+(./Solution-Results.aux
+
+LaTeX Warning: Label `fig:opex' multiply defined.
+
+)
+\openout1 = `Solution-Results.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+
+-- Lines per column: 56 (exact).
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count275
+\scratchdimen=\dimen182
+\scratchbox=\box54
+\nofMPsegments=\count276
+\nofMParguments=\count277
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count278
+\MPscratchDim=\dimen183
+\MPnumerator=\count279
+\makeMPintoPDFobject=\count280
+\everyMPtoPDFconversion=\toks31
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Warning: Reference `Automotive-Services' on page 1 undefined on input lin
+e 114.
+
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
+14.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+
+LaTeX Warning: Reference `????' on page 1 undefined on input line 189.
+
+
+LaTeX Warning: Reference `???' on page 1 undefined on input line 189.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Reference `sec:automotive-services' on page 2 undefined on input
+ line 283.
+
+[2]
+Package epstopdf Info: Source file: <./figures/S-VNFDinstance_trace.eps>
+(epstopdf)                    date: 2021-06-24 17:37:27
+(epstopdf)                    size: 32555 bytes
+(epstopdf)             Output file: <./figures/S-VNFDinstance_trace-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2021-06-24 17:37:31
+(epstopdf)                    size: 15010 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/S-VNFDinstance_t
+race-eps-converted-to.pdf ./figures/S-VNFDinstance_trace.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/S-VNFDinstance_trace-eps-converted-to.pdf, id=25, 450.86441pt x 338.
+11319pt>
+File: ./figures/S-VNFDinstance_trace-eps-converted-to.pdf Graphic file (type pd
+f)
+<use ./figures/S-VNFDinstance_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/S-VNFDinstance_trace-eps-converted-to.pdf  u
+sed on input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 123.83076pt.
+Package epstopdf Info: Source file: <./figures/B-VNFDinstance_trace.eps>
+(epstopdf)                    date: 2021-06-24 17:37:27
+(epstopdf)                    size: 35207 bytes
+(epstopdf)             Output file: <./figures/B-VNFDinstance_trace-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2021-06-24 17:37:32
+(epstopdf)                    size: 15336 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/B-VNFDinstance_t
+race-eps-converted-to.pdf ./figures/B-VNFDinstance_trace.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/B-VNFDinstance_trace-eps-converted-to.pdf, id=26, 450.90457pt x 338.
+11319pt>
+File: ./figures/B-VNFDinstance_trace-eps-converted-to.pdf Graphic file (type pd
+f)
+<use ./figures/B-VNFDinstance_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/B-VNFDinstance_trace-eps-converted-to.pdf  u
+sed on input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 123.82043pt.
+Package epstopdf Info: Source file: <./figures/ML-VRSinstance_trace.eps>
+(epstopdf)                    date: 2021-06-24 17:37:28
+(epstopdf)                    size: 35676 bytes
+(epstopdf)             Output file: <./figures/ML-VRSinstance_trace-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2021-06-24 17:37:32
+(epstopdf)                    size: 15837 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/ML-VRSinstance_t
+race-eps-converted-to.pdf ./figures/ML-VRSinstance_trace.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/ML-VRSinstance_trace-eps-converted-to.pdf, id=27, 450.90457pt x 338.
+11319pt>
+File: ./figures/ML-VRSinstance_trace-eps-converted-to.pdf Graphic file (type pd
+f)
+<use ./figures/ML-VRSinstance_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/ML-VRSinstance_trace-eps-converted-to.pdf  u
+sed on input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 123.82043pt.
+Package epstopdf Info: Source file: <./figures/S-VNFDcost_trace.eps>
+(epstopdf)                    date: 2021-06-25 08:49:41
+(epstopdf)                    size: 29801 bytes
+(epstopdf)             Output file: <./figures/S-VNFDcost_trace-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2021-06-25 08:49:44
+(epstopdf)                    size: 16095 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/S-VNFDcost_trace
+-eps-converted-to.pdf ./figures/S-VNFDcost_trace.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/S-VNFDcost_trace-eps-converted-to.pdf, id=28, 417.94144pt x 354.1832
+1pt>
+File: ./figures/S-VNFDcost_trace-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/S-VNFDcost_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/S-VNFDcost_trace-eps-converted-to.pdf  used 
+on input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 139.93056pt.
+Package epstopdf Info: Source file: <./figures/B-VNFDcost_trace.eps>
+(epstopdf)                    date: 2021-06-25 08:49:41
+(epstopdf)                    size: 29759 bytes
+(epstopdf)             Output file: <./figures/B-VNFDcost_trace-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2021-06-25 08:49:44
+(epstopdf)                    size: 15786 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/B-VNFDcost_trace
+-eps-converted-to.pdf ./figures/B-VNFDcost_trace.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/B-VNFDcost_trace-eps-converted-to.pdf, id=29, 410.96536pt x 354.1832
+1pt>
+File: ./figures/B-VNFDcost_trace-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/B-VNFDcost_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/B-VNFDcost_trace-eps-converted-to.pdf  used 
+on input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 142.30849pt.
+Package epstopdf Info: Source file: <./figures/ML-VRScost_trace.eps>
+(epstopdf)                    date: 2021-06-25 08:49:41
+(epstopdf)                    size: 31225 bytes
+(epstopdf)             Output file: <./figures/ML-VRScost_trace-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2021-06-25 08:49:45
+(epstopdf)                    size: 16344 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/ML-VRScost_trace
+-eps-converted-to.pdf ./figures/ML-VRScost_trace.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/ML-VRScost_trace-eps-converted-to.pdf, id=30, 410.96536pt x 354.1832
+1pt>
+File: ./figures/ML-VRScost_trace-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/ML-VRScost_trace-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/ML-VRScost_trace-eps-converted-to.pdf  used 
+on input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 142.30849pt.
+Package epstopdf Info: Source file: <./figures/Automative.eps>
+(epstopdf)                    date: 2021-06-25 08:53:27
+(epstopdf)                    size: 37224 bytes
+(epstopdf)             Output file: <./figures/Automative-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2021-06-25 08:53:34
+(epstopdf)                    size: 19708 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/Automative-eps-c
+onverted-to.pdf ./figures/Automative.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/Automative-eps-converted-to.pdf, id=31, 410.96536pt x 313.98303pt>
+File: ./figures/Automative-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/Automative-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/Automative-eps-converted-to.pdf  used on inp
+ut line 283.
+(pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
+Package epstopdf Info: Source file: <./figures/bird_eye.eps>
+(epstopdf)                    date: 2021-06-25 08:53:28
+(epstopdf)                    size: 37228 bytes
+(epstopdf)             Output file: <./figures/bird_eye-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-06-25 08:53:34
+(epstopdf)                    size: 19332 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-eps-con
+verted-to.pdf ./figures/bird_eye.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/bird_eye-eps-converted-to.pdf, id=32, 410.96536pt x 313.98303pt>
+File: ./figures/bird_eye-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/bird_eye-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/bird_eye-eps-converted-to.pdf  used on input
+ line 283.
+(pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
+Package epstopdf Info: Source file: <./figures/bird_eye-2days.eps>
+(epstopdf)                    date: 2021-06-25 08:53:27
+(epstopdf)                    size: 36004 bytes
+(epstopdf)             Output file: <./figures/bird_eye-2days-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2021-06-25 08:53:35
+(epstopdf)                    size: 17904 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-2days-e
+ps-converted-to.pdf ./figures/bird_eye-2days.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/bird_eye-2days-eps-converted-to.pdf, id=33, 417.94144pt x 313.98303p
+t>
+File: ./figures/bird_eye-2days-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/bird_eye-2days-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/bird_eye-2days-eps-converted-to.pdf  used on
+ input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 124.04828pt.
+Package epstopdf Info: Source file: <./figures/Automative-bar.eps>
+(epstopdf)                    date: 2021-06-25 08:56:58
+(epstopdf)                    size: 32859 bytes
+(epstopdf)             Output file: <./figures/Automative-bar-eps-converted-to.
+pdf>
+(epstopdf)                    date: 2021-06-25 08:57:04
+(epstopdf)                    size: 15274 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/Automative-bar-e
+ps-converted-to.pdf ./figures/Automative-bar.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/Automative-bar-eps-converted-to.pdf, id=34, 410.96536pt x 313.98303p
+t>
+File: ./figures/Automative-bar-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/Automative-bar-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/Automative-bar-eps-converted-to.pdf  used on
+ input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
+Package epstopdf Info: Source file: <./figures/bird_eye-bar.eps>
+(epstopdf)                    date: 2021-06-25 08:56:58
+(epstopdf)                    size: 30843 bytes
+(epstopdf)             Output file: <./figures/bird_eye-bar-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2021-06-25 08:57:04
+(epstopdf)                    size: 15117 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-bar-eps
+-converted-to.pdf ./figures/bird_eye-bar.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/bird_eye-bar-eps-converted-to.pdf, id=35, 410.96536pt x 313.98303pt>
+
+File: ./figures/bird_eye-bar-eps-converted-to.pdf Graphic file (type pdf)
+<use ./figures/bird_eye-bar-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/bird_eye-bar-eps-converted-to.pdf  used on i
+nput line 283.
+(pdftex.def)             Requested size: 165.12378pt x 126.15631pt.
+Package epstopdf Info: Source file: <./figures/bird_eye-2days-bar.eps>
+(epstopdf)                    date: 2021-06-25 08:56:57
+(epstopdf)                    size: 29615 bytes
+(epstopdf)             Output file: <./figures/bird_eye-2days-bar-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2021-06-25 08:57:05
+(epstopdf)                    size: 13952 bytes
+(epstopdf)             Command: <repstopdf --outfile=./figures/bird_eye-2days-b
+ar-eps-converted-to.pdf ./figures/bird_eye-2days-bar.eps>
+(epstopdf)             \includegraphics on input line 283.
+Package epstopdf Info: Output file is already uptodate.
+<./figures/bird_eye-2days-bar-eps-converted-to.pdf, id=36, 417.94144pt x 313.98
+303pt>
+File: ./figures/bird_eye-2days-bar-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./figures/bird_eye-2days-bar-eps-converted-to.pdf>
+Package pdftex.def Info: ./figures/bird_eye-2days-bar-eps-converted-to.pdf  use
+d on input line 283.
+(pdftex.def)             Requested size: 165.12378pt x 124.04828pt.
+
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[3
+
+] [4 <./figures/S-VNFDinstance_trace-eps-converted-to.pdf> <./figures/B-VNFDins
+tance_trace-eps-converted-to.pdf> <./figures/ML-VRSinstance_trace-eps-converted
+-to.pdf> <./figures/S-VNFDcost_trace-eps-converted-to.pdf> <./figures/B-VNFDcos
+t_trace-eps-converted-to.pdf> <./figures/ML-VRScost_trace-eps-converted-to.pdf>
+ <./figures/Automative-eps-converted-to.pdf> <./figures/bird_eye-eps-converted-
+to.pdf> <./figures/bird_eye-2days-eps-converted-to.pdf> <./figures/Automative-b
+ar-eps-converted-to.pdf> <./figures/bird_eye-bar-eps-converted-to.pdf> <./figur
+es/bird_eye-2days-bar-eps-converted-to.pdf>] (./Solution-Results.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 6079 strings out of 483056
+ 93198 string characters out of 5963250
+ 338568 words of memory out of 5000000
+ 21024 multiletter control sequences out of 15000+600000
+ 571091 words of font info for 98 fonts, out of 8000000 for 9000
+ 81 hyphenation exceptions out of 8191
+ 48i,8n,46p,1327b,491s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri
+8a.pfb>
+Output written on Solution-Results.pdf (4 pages, 309337 bytes).
+PDF statistics:
+ 573 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+

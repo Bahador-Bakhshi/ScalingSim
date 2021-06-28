@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import sys
 
 
-def load_trace(trace_file_name):
+def load_trace(trace_file_name, outname):
     rate = []
 
     small_inst = []
@@ -56,36 +56,41 @@ def load_trace(trace_file_name):
     fig, ax1 = plt.subplots()
     plt.grid(linestyle="--", linewidth=0.5)
 
-    ax1.set_xlabel('Load Scale')
+    ax1.set_xlabel(r'$\ell$')
     ticks = rate.copy()
     labels = rate.copy()
     plt.xticks(ticks, labels)
 
-    ax1.set_ylabel(r'cost ($10^3$)')
+    ax1.set_ylabel(r'Cost ($10^3$)')
 
-    lns1 = ax1.plot(rate, small_inst, label='S-VNFD-Inst', color='r', linestyle='--', marker="s", fillstyle='none', linewidth=1)
-    lns2 = ax1.plot(rate, small_sla, label='S-VNFD-SLA', color='r', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
-    lns3 = ax1.plot(rate, small_total, label='S-VNFD-OPEX', color='r', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
+    lns1 = ax1.plot(rate, small_inst, label='S-VNFD-Prov', color='tab:orange', linestyle='--', marker="s", fillstyle='none', linewidth=1)
+    lns2 = ax1.plot(rate, small_sla, label='S-VNFD-SLA', color='tab:orange', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
+    lns3 = ax1.plot(rate, small_total, label='S-VNFD-OPEX', color='tab:orange', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
     
-    lns1 = ax1.plot(rate, big_inst, label='B-VNFD-Inst', color='g', linestyle='--', marker="s", fillstyle='none', linewidth=1)
-    lns2 = ax1.plot(rate, big_sla, label='B-VNFD-SLA', color='g', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
-    lns3 = ax1.plot(rate, big_total, label='B-VNFD-OPEX', color='g', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
+    lns1 = ax1.plot(rate, big_inst, label='B-VNFD-Prov', color='tab:blue', linestyle='--', marker="s", fillstyle='none', linewidth=1)
+    lns2 = ax1.plot(rate, big_sla, label='B-VNFD-SLA', color='tab:blue', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
+    lns3 = ax1.plot(rate, big_total, label='B-VNFD-OPEX', color='tab:blue', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
  
-    lns1 = ax1.plot(rate, aiml_inst, label='aiml-VNFD-Inst', color='b', linestyle='--', marker="s", fillstyle='none', linewidth=1)
-    lns2 = ax1.plot(rate, aiml_sla, label='aiml-VNFD-SLA', color='b', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
-    lns3 = ax1.plot(rate, aiml_total, label='aiml-VNFD-OPEX', color='b', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
+    lns1 = ax1.plot(rate, aiml_inst, label='ML-VRS-Prov', color='tab:green', linestyle='--', marker="s", fillstyle='none', linewidth=1)
+    lns2 = ax1.plot(rate, aiml_sla, label='ML-VRS-SLA', color='tab:green', linestyle='-.', marker="o", fillstyle='none', linewidth=1)
+    lns3 = ax1.plot(rate, aiml_total, label='ML-VRS-OPEX', color='tab:green', linestyle='solid', marker="+", fillstyle='none', linewidth=1)
  
     #plt.ylim(-5,100)
     ax1.tick_params(axis='y')
 
 
 
-    plt.legend(handlelength=1, ncol=2, handleheight=2.4, labelspacing=0.00)
+    leg = plt.legend(handlelength=1, ncol=2, handleheight=2.4, labelspacing=0.00)
+    leg.get_frame().set_alpha(0.05)
 
-    plt.savefig("Bird_eye-2days.eps", bbox_inches='tight')
+    plt.savefig(outname+".eps", bbox_inches='tight')
 
 
-load_trace("bird_eye-2days-results.csv")
+load_trace("bird_eye-2days-results.csv", "bird_eye-2days")
+load_trace("Automative-results.csv", "Automative")
+load_trace("bird_eye-results.csv", "bird_eye")
+
+
 
 
 

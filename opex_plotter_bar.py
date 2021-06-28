@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import sys
 
 
-def load_trace(trace_file_name):
+def load_trace(trace_file_name, outname):
     rate = []
 
     small_inst = []
@@ -57,7 +57,7 @@ def load_trace(trace_file_name):
     fig, ax1 = plt.subplots()
     plt.grid(axis="y", linestyle="--", linewidth=0.5)
 
-    ax1.set_xlabel('Load Scale')
+    ax1.set_xlabel(r'$\ell$')
     ticks = rate.copy()
     labels = rate.copy()
     plt.xticks(ticks, labels)
@@ -69,23 +69,28 @@ def load_trace(trace_file_name):
     rate_aiml  = rate.copy()
     rate_big   = [x + width for x in rate]
     
-    plt.bar(rate_small, small_inst, width, label='S-VNFD-Inst', color='darkgreen')
-    plt.bar(rate_aiml, aiml_inst, width, label='AIML-Inst', color='aqua')
-    plt.bar(rate_big, big_inst, width, label='B-VNFD-Inst', color='blue')
+    plt.bar(rate_small, small_inst, width, label='S-VNFD-Prov', color='tab:orange')
+    plt.bar(rate_aiml, aiml_inst, width, label='ML-VRS-Prov', color='tab:green')
+    plt.bar(rate_big, big_inst, width, label='B-VNFD-Prov', color='tab:brown')
 
-    plt.bar(rate_small, small_sla, width, label='S-VNFD-SLA', bottom=small_inst, color='red')
-    plt.bar(rate_aiml, aiml_sla, width, label='AIML-SLA', bottom=aiml_inst, color='orange')
-    plt.bar(rate_big, big_sla, width, label='B-VNFD-SLA', bottom=big_inst, color='darkred')
+    plt.bar(rate_small, small_sla, width, label='S-VNFD-SLA', bottom=small_inst, color='tab:blue')
+    plt.bar(rate_aiml, aiml_sla, width, label='ML-VRS-SLA', bottom=aiml_inst, color='tab:red')
+    plt.bar(rate_big, big_sla, width, label='B-VNFD-SLA', bottom=big_inst, color='tab:cyan')
 
     #plt.ylim(-5,100)
     ax1.tick_params(axis='y')
 
     plt.legend(handlelength=1, ncol=2, handleheight=2.4, labelspacing=0.00)
 
-    plt.savefig("Automative-bar.eps", bbox_inches='tight')
+    plt.savefig(outname+"-bar.eps", bbox_inches='tight')
 
 
-load_trace("Automative-results.csv")
+load_trace("bird_eye-2days-results.csv", "bird_eye-2days")
+load_trace("Automative-results.csv", "Automative")
+load_trace("bird_eye-results.csv", "bird_eye")
+
+
+
 
 
 
