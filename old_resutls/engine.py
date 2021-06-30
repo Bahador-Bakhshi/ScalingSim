@@ -302,8 +302,8 @@ def sla_cost():
     return sum(sla_penalty_cost)
 
 if __name__ == "__main__":
-    rate_interval = 1.0 / 12.0
-    load_scale = 0.03
+    rate_interval = 1.0 / 24.0
+    load_scale = 1.1
 
     arrival_rates = [
             request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale),  
@@ -317,9 +317,8 @@ if __name__ == "__main__":
             request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
-            request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale)
-            ]
-    '''
+            request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale),
+
             request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale),  
             request_generator.ArrivalRateDynamics(rate_interval, 2 * load_scale), 
             request_generator.ArrivalRateDynamics(rate_interval, 1 * load_scale), 
@@ -332,13 +331,14 @@ if __name__ == "__main__":
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale)
-    '''
 
+
+        ]
     service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
-    simulation_time = 17280000
-    iterations = 5
+    simulation_time = 200
+    iterations = 10
 
-    MONITORING_INTERVAL = simulation_time / 10000.0
+    MONITORING_INTERVAL = simulation_time / 100.0
 
     fix_inst_costs_arr_small = []
     fix_sla_costs_arr_small  = []
