@@ -3,7 +3,8 @@ import logging
 import sys
 import heapq
 import queue
-
+import scipy.stats
+from operator import add
 from enum import IntEnum
 
 import request_generator
@@ -14,6 +15,14 @@ number_of_created_instances = 0
 must_be_terminated = 0
 sla_penalty_cost = []
 instances = []
+
+def mean_confidence_interval(data, confidence=0.95):
+    a = 1.0 * np.array(data)
+    n = len(a)
+    m, se = np.mean(a), scipy.stats.sem(a)
+    h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
+    return m, m-h, m+h, h
+
 
 class EventTypes(IntEnum):
     arrival     = 0 # new demand arrival, it will be enqueued
@@ -317,8 +326,10 @@ if __name__ == "__main__":
             request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
-            request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale),
-
+            request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale)
+	]
+	
+    '''
             request_generator.ArrivalRateDynamics(rate_interval, 4 * load_scale),  
             request_generator.ArrivalRateDynamics(rate_interval, 2 * load_scale), 
             request_generator.ArrivalRateDynamics(rate_interval, 1 * load_scale), 
@@ -331,12 +342,14 @@ if __name__ == "__main__":
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 6 * load_scale),
             request_generator.ArrivalRateDynamics(rate_interval, 5 * load_scale)
+       ]
+    '''
 
-
-        ]
-    service_type = request_generator.ServiceType1(1.0, 3.7, 4.7)
+       
+    #service_type = request_generator.ServiceType2(1.0, 3.7, 4.7)
+    service_type = request_generator.ServiceType1(1.0, 14.7, 26.0)
     simulation_time = 200
-    iterations = 10
+    iterations = 20
 
     MONITORING_INTERVAL = simulation_time / 100.0
 
@@ -420,6 +433,20 @@ if __name__ == "__main__":
         shutdown(number_of_created_instances, last_time)
         res(thre_inst_costs_arr, thre_sla_costs_arr)
 
+    print("Fix small ...")
     print("Fix small: instance_cost = ", sum(fix_inst_costs_arr_small) / iterations," sla cost = ", sum(fix_sla_costs_arr_small) / iterations)
+    print("inst_cost = ", mean_confidence_interval(fix_inst_costs_arr_small))
+    print("sla_cost  = ", mean_confidence_interval(fix_sla_costs_arr_small))
+    print("total_cost= ", mean_confidence_interval(list(map(add, fix_inst_costs_arr_small, fix_sla_costs_arr_small))))
+    
+    print("Fix big ...")
     print("Fix big: instance_cost   = ", sum(fix_inst_costs_arr_big) / iterations," sla cost = ", sum(fix_sla_costs_arr_big) / iterations)
+    print("inst_cost = ", mean_confidence_interval(fix_inst_costs_arr_big))
+    print("sla_cost  = ", mean_confidence_interval(fix_sla_costs_arr_big))
+    print("total_cost= ", mean_confidence_interval(list(map(add, fix_inst_costs_arr_big, fix_sla_costs_arr_big))))
+    
+    print("Thr ...")
     print("Thr: instance_cost       = ", sum(thre_inst_costs_arr) / iterations," sla cost = ", sum(thre_sla_costs_arr) / iterations)
+    print("inst_cost = ", mean_confidence_interval(thre_inst_costs_arr))
+    print("sla_cost  = ", mean_confidence_interval(thre_sla_costs_arr))
+    print("total_cost= ", mean_confidence_interval(list(map(add, thre_inst_costs_arr, thre_sla_costs_arr))))
